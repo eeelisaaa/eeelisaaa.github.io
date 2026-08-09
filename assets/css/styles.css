@@ -62,9 +62,9 @@
   --bg-soft:     #0F0E14;
   --surface:     #141218;
   --surface-2:   #17151E;
-  --text:        #EDEAF2;
-  --muted:       #8B8794;
-  --muted-dim:   #6B6774;
+  --text:        #EDEAF2;  /* 16.6:1 on --bg */
+  --muted:       #9591A0;  /*  6.4:1 — body secondary text */
+  --muted-dim:   #7E7A8A;  /*  4.7:1 — dates, notes, footer; still AA at small sizes */
   --accent:      #C48BFF;
   --accent-soft: #FF8FD0;
   --line:        rgba(237, 234, 242, .09);
@@ -396,7 +396,9 @@ a { color: inherit; text-decoration: none; }
 .portrait-frame img {
   width: 100%; height: 100%;
   object-fit: cover;
-  filter: saturate(.92) contrast(1.03);
+  /* The studio backdrop is near-white; easing it down keeps the portrait from
+     punching a bright hole in the dark page. */
+  filter: saturate(.82) contrast(1.04) brightness(.86);
 }
 .portrait-frame::after {
   content: '';
@@ -602,10 +604,14 @@ a { color: inherit; text-decoration: none; }
 
 /* ── Skills ─────────────────────────────────────────────────────────────── */
 
+/* Four cards, so a 2×2 block reads better than the 3+1 an auto-fit would give. */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.25rem;
+}
+@media (min-width: 640px) {
+  .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .skill-card {
@@ -912,6 +918,9 @@ a.project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
     font-size: 1.2rem;
   }
 
+  .hero {
+    padding-top: clamp(6.5rem, 14vh, 9rem);
+  }
   .hero-inner {
     grid-template-columns: minmax(0, 1fr);
     gap: 2.5rem;

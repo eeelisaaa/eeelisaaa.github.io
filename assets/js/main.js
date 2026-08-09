@@ -216,6 +216,11 @@
   root.addEventListener('focusin', function () { hold('focus'); });
   root.addEventListener('focusout', function () { release('focus'); });
 
+  // Deliberately event-driven only: a page that *loads* hidden keeps its timer,
+  // because some embedded webviews report visibilityState 'hidden' permanently
+  // and never fire the event — holding at init would freeze the carousel there.
+  // Browsers throttle background timers anyway, and returning to the tab
+  // re-syncs through the handler below.
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) hold('hidden');
     else release('hidden');
