@@ -26,48 +26,63 @@
     <h1 class="links-name reveal" style="--i:1">{{ person.name | escape }}</h1>
     <p class="links-tagline reveal" style="--i:2">{{ links.page.tagline | escape }}</p>
 
-    <ul class="links-list">
-      {%- for row in links.rows %}
-      {%- assign is_external = false -%}
-      {%- if row.profile -%}
-        {%- assign profile = cv.profiles | where: "icon", row.profile | first -%}
-        {%- assign href = profile.url -%}
-        {%- assign icon = row.profile -%}
-        {%- assign is_external = true -%}
-      {%- elsif row.mailto -%}
-        {%- assign href = person.email | prepend: "mailto:" -%}
-        {%- assign icon = row.icon -%}
-      {%- else -%}
-        {%- assign href = row.url -%}
-        {%- assign icon = row.icon -%}
-        {%- if row.url contains "://" -%}{%- assign is_external = true -%}{%- endif -%}
-      {%- endif -%}
-      {%- assign sub = row.sub -%}
-      {%- if row.mailto and row.sub == nil -%}{%- assign sub = person.email -%}{%- endif %}
-      <li class="reveal" style="--i:{{ forloop.index | plus: 2 }}">
-        <a class="link-row" href="{{ href }}"{% if is_external %} target="_blank" rel="me noopener noreferrer"{% endif %}>
-          <span class="link-icon" aria-hidden="true">
-            <svg focusable="false"><use href="#i-{{ icon }}"></use></svg>
-          </span>
-          <span class="link-text">
-            <span class="link-label">{{ row.label | escape }}</span>
-            {%- if sub %}
-            <span class="link-sub">{{ sub | escape }}</span>
+    {%- comment -%}
+      One reveal counter runs across every heading and row so the whole page
+      staggers in order, however many sections _data/links.yml grows to.
+    {%- endcomment -%}
+    {%- assign step = 2 -%}
+    {%- for section in links.sections %}
+    {%- assign step = step | plus: 1 -%}
+    {%- assign heading_id = section.heading | slugify | prepend: "group-" %}
+    <section class="links-group" aria-labelledby="{{ heading_id }}">
+      <h2 class="links-heading reveal" id="{{ heading_id }}" style="--i:{{ step }}">{{ section.heading | escape }}</h2>
+
+      <ul class="links-list">
+        {%- for row in section.rows %}
+        {%- assign step = step | plus: 1 -%}
+        {%- assign is_external = false -%}
+        {%- if row.profile -%}
+          {%- assign profile = cv.profiles | where: "icon", row.profile | first -%}
+          {%- assign href = profile.url -%}
+          {%- assign icon = row.profile -%}
+          {%- assign is_external = true -%}
+        {%- elsif row.mailto -%}
+          {%- assign href = person.email | prepend: "mailto:" -%}
+          {%- assign icon = row.icon -%}
+        {%- else -%}
+          {%- assign href = row.url -%}
+          {%- assign icon = row.icon -%}
+          {%- if row.url contains "://" -%}{%- assign is_external = true -%}{%- endif -%}
+        {%- endif -%}
+        {%- assign sub = row.sub -%}
+        {%- if row.mailto and row.sub == nil -%}{%- assign sub = person.email -%}{%- endif %}
+        <li class="reveal" style="--i:{{ step }}">
+          <a class="link-row" href="{{ href }}"{% if is_external %} target="_blank" rel="me noopener noreferrer"{% endif %}>
+            <span class="link-icon" aria-hidden="true">
+              <svg focusable="false"><use href="#i-{{ icon }}"></use></svg>
+            </span>
+            <span class="link-text">
+              <span class="link-label">{{ row.label | escape }}</span>
+              {%- if sub %}
+              <span class="link-sub">{{ sub | escape }}</span>
+              {%- endif %}
+            </span>
+            <span class="link-go" aria-hidden="true">
+              <svg focusable="false"><use href="#i-arrow"></use></svg>
+            </span>
+            {%- if is_external %}
+            <span class="sr-only">(opens in a new tab)</span>
             {%- endif %}
-          </span>
-          <span class="link-go" aria-hidden="true">
-            <svg focusable="false"><use href="#i-arrow"></use></svg>
-          </span>
-          {%- if is_external %}
-          <span class="sr-only">(opens in a new tab)</span>
-          {%- endif %}
-        </a>
-      </li>
-      {%- endfor %}
-    </ul>
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endfor %}
   </div>
 
-  <p class="links-footer reveal" style="--i:7">&copy; {{ 'now' | date: "%Y" }} {{ person.name | escape }}</p>
+  {%- assign step = step | plus: 1 %}
+  <p class="links-footer reveal" style="--i:{{ step }}">&copy; {{ 'now' | date: "%Y" }} {{ person.name | escape }}</p>
 </main>
 
 <script src="../assets/js/main.js" defer></script>
