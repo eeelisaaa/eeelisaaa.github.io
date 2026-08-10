@@ -19,7 +19,10 @@ site:
   share_description: >-
     Computer-science foundations, social-research method. Junior IT and data
     professional based in Germany.
-  url: "https://elisaganea.eu/"
+  # Where the site actually lives. Used for canonical links and for the absolute
+  # image URL in social-media previews, so it has to resolve — change it back to
+  # https://elisaganea.eu/ once that domain points at GitHub Pages again.
+  url: "https://eeelisaaa.github.io/"
   theme_color: "#0B0A0F"
   og_image: "assets/img/og-image.jpg"
   og_image_width: 1200

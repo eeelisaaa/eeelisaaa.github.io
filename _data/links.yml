@@ -1,0 +1,37 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Content for the link-in-bio page at /links/
+#
+#  This page is NOT linked from the main site and is kept out of sitemap.xml,
+#  but it is still a public URL — anyone with the link can open it.
+#
+#  Each row needs a label and one destination. Give it either:
+#    profile: linkedin|github   → reuses the URL from cv.yml, so it's defined once
+#    mailto: true               → builds mailto: from person.email in cv.yml
+#    url: "/some/path"          → anything else
+#  Icons available: linkedin, github, mail, arrow (see _includes/icon-sprite.html)
+# ─────────────────────────────────────────────────────────────────────────────
+
+page:
+  title: "Elisa Zoe Ganea — links"
+  description: >-
+    Links to Elisa Zoe Ganea's portfolio, LinkedIn, GitHub and email.
+  tagline: "Junior IT & data — Germany"
+
+rows:
+  - profile: linkedin
+    label: "LinkedIn"
+    sub: "Work history and updates"
+
+  - profile: github
+    label: "GitHub"
+    sub: "Code and projects"
+
+  - mailto: true
+    icon: "mail"
+    label: "Email"
+    # sub falls back to the address in cv.yml when left out
+
+  - url: "/"
+    icon: "arrow"
+    label: "Portfolio"
+    sub: "The full site"

@@ -1,0 +1,75 @@
+---
+# ── Link-in-bio page, served at /links/ ──────────────────────────────────────
+# Content lives in _data/links.yml. Deliberately not linked from the main site
+# and excluded from sitemap.xml, but still a public URL.
+# ─────────────────────────────────────────────────────────────────────────────
+---
+{%- assign cv = site.data.cv -%}
+{%- assign person = cv.person -%}
+{%- assign links = site.data.links -%}
+<!DOCTYPE html>
+<html lang="en">
+{% include head.html title=links.page.title description=links.page.description path="links/" base="../" noindex=true %}
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+{% include icon-sprite.html %}
+<main class="links-main" id="main">
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="links-card">
+    <div class="portrait-frame links-portrait reveal">
+      <img src="../assets/img/portrait.webp" width="700" height="1050"
+           alt="{{ person.portrait_alt | escape }}" fetchpriority="high" decoding="async">
+    </div>
+
+    <h1 class="links-name reveal" style="--i:1">{{ person.name | escape }}</h1>
+    <p class="links-tagline reveal" style="--i:2">{{ links.page.tagline | escape }}</p>
+
+    <ul class="links-list">
+      {%- for row in links.rows %}
+      {%- assign is_external = false -%}
+      {%- if row.profile -%}
+        {%- assign profile = cv.profiles | where: "icon", row.profile | first -%}
+        {%- assign href = profile.url -%}
+        {%- assign icon = row.profile -%}
+        {%- assign is_external = true -%}
+      {%- elsif row.mailto -%}
+        {%- assign href = person.email | prepend: "mailto:" -%}
+        {%- assign icon = row.icon -%}
+      {%- else -%}
+        {%- assign href = row.url -%}
+        {%- assign icon = row.icon -%}
+        {%- if row.url contains "://" -%}{%- assign is_external = true -%}{%- endif -%}
+      {%- endif -%}
+      {%- assign sub = row.sub -%}
+      {%- if row.mailto and row.sub == nil -%}{%- assign sub = person.email -%}{%- endif %}
+      <li class="reveal" style="--i:{{ forloop.index | plus: 2 }}">
+        <a class="link-row" href="{{ href }}"{% if is_external %} target="_blank" rel="me noopener noreferrer"{% endif %}>
+          <span class="link-icon" aria-hidden="true">
+            <svg focusable="false"><use href="#i-{{ icon }}"></use></svg>
+          </span>
+          <span class="link-text">
+            <span class="link-label">{{ row.label | escape }}</span>
+            {%- if sub %}
+            <span class="link-sub">{{ sub | escape }}</span>
+            {%- endif %}
+          </span>
+          <span class="link-go" aria-hidden="true">
+            <svg focusable="false"><use href="#i-arrow"></use></svg>
+          </span>
+          {%- if is_external %}
+          <span class="sr-only">(opens in a new tab)</span>
+          {%- endif %}
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </div>
+
+  <p class="links-footer reveal" style="--i:7">&copy; {{ 'now' | date: "%Y" }} {{ person.name | escape }}</p>
+</main>
+
+<script src="../assets/js/main.js" defer></script>
+</body>
+</html>

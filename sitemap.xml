@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- /links/ is deliberately absent: it is a bio link, not a page meant to
+     compete with the portfolio in search results. It also carries noindex. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://elisaganea.eu/</loc>
-    <lastmod>2026-08-09</lastmod>
+    <loc>https://eeelisaaa.github.io/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>

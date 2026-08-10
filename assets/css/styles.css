@@ -1001,7 +1001,8 @@ a.project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 
   .hero-glow { animation: none; }
   .btn:hover, .skill-card:hover, .project-card:hover,
-  .btn-icon:hover, .btn-icon:hover svg { transform: none; }
+  .btn-icon:hover, .btn-icon:hover svg,
+  .link-row:hover, .link-row:hover .link-go { transform: none; }
 
   /* Carousel becomes a static stack — nothing moves, nothing is hidden. */
   .js .hl-viewport { gap: 1rem; }
@@ -1022,4 +1023,117 @@ a.project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
   .site-header, .hl-controls, .hero-glow, .skip-link { display: none !important; }
   body { background: #fff; color: #000; }
   .js .hl-card { grid-area: auto; opacity: 1; visibility: visible; transform: none; }
+}
+
+/* ── Link-in-bio page (/links/) ─────────────────────────────────────────── */
+/* Standalone page, no header or nav. Everything here builds on the tokens,
+   fonts, .hero-glow, .portrait-frame and reduced-motion rules defined above. */
+
+.links-main {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-items: center;
+  align-items: center;
+  padding: clamp(2.5rem, 7vh, 4.5rem) var(--gutter);
+}
+
+.links-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+}
+
+/* Narrower than the hero portrait; the baked-in alpha feather needs no help. */
+.portrait-frame.links-portrait {
+  width: clamp(96px, 26vw, 124px);
+  margin-inline: auto;
+  margin-bottom: 1.15rem;
+}
+
+.links-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 7vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  margin-bottom: .3rem;
+}
+
+.links-tagline {
+  color: var(--muted);
+  font-size: .95rem;
+  margin-bottom: 2rem;
+}
+
+.links-list {
+  display: grid;
+  gap: .7rem;
+}
+
+.link-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .9rem;
+  padding: .8rem 1.05rem;
+  text-align: left;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  color: var(--text);
+  transition: border-color .3s var(--ease), background .3s var(--ease),
+              transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.link-row:hover {
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -14px color-mix(in srgb, var(--accent) 80%, transparent);
+}
+.link-row:active { transform: translateY(-1px); }
+
+.link-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  transition: color .3s var(--ease), border-color .3s var(--ease);
+}
+.link-icon svg { width: 17px; height: 17px; fill: currentColor; display: block; }
+.link-row:hover .link-icon {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+.link-text { display: grid; gap: .1rem; min-width: 0; }
+.link-label { font-size: 1rem; font-weight: 500; }
+.link-sub {
+  font-size: .82rem;
+  color: var(--muted-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-go {
+  display: grid;
+  place-items: center;
+  color: var(--muted-dim);
+  transition: color .3s var(--ease), transform .3s var(--ease);
+}
+.link-go svg { width: 15px; height: 15px; fill: currentColor; display: block; }
+.link-row:hover .link-go { color: var(--accent); transform: translateX(3px); }
+
+.links-footer {
+  position: relative;
+  margin-top: 2.5rem;
+  font-size: .8rem;
+  color: var(--muted-dim);
 }
