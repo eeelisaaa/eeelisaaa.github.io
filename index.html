@@ -1,26 +1,34 @@
+---
+# ── This file is a template ──────────────────────────────────────────────────
+# The words on the page live in _data/cv.yml. Edit that file, not this one.
+# This is the layout: structure, classes and ARIA. Jekyll fills in the content.
+# ─────────────────────────────────────────────────────────────────────────────
+---
+{%- assign cv = site.data.cv -%}
+{%- assign person = cv.person -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Elisa Zoe Ganea — Junior IT / Data &amp; Analytics</title>
-<meta name="description" content="Elisa Zoe Ganea — junior IT and data professional in Germany. Computer-science foundations in algorithms, SQL and Linux, paired with applied social-research method in R and SPSS.">
-<meta name="author" content="Elisa Zoe Ganea">
-<link rel="canonical" href="https://elisaganea.eu/">
-<meta name="theme-color" content="#0B0A0F">
+<title>{{ cv.site.title | escape }}</title>
+<meta name="description" content="{{ cv.site.description | escape }}">
+<meta name="author" content="{{ person.name | escape }}">
+<link rel="canonical" href="{{ cv.site.url }}">
+<meta name="theme-color" content="{{ cv.site.theme_color }}">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://elisaganea.eu/">
-<meta property="og:title" content="Elisa Zoe Ganea — Junior IT / Data &amp; Analytics">
-<meta property="og:description" content="Computer-science foundations, social-research method. Junior IT and data professional based in Germany.">
-<meta property="og:image" content="https://elisaganea.eu/assets/img/og-image.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:url" content="{{ cv.site.url }}">
+<meta property="og:title" content="{{ cv.site.title | escape }}">
+<meta property="og:description" content="{{ cv.site.share_description | escape }}">
+<meta property="og:image" content="{{ cv.site.url }}{{ cv.site.og_image }}">
+<meta property="og:image:width" content="{{ cv.site.og_image_width }}">
+<meta property="og:image:height" content="{{ cv.site.og_image_height }}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Elisa Zoe Ganea — Junior IT / Data &amp; Analytics">
-<meta name="twitter:description" content="Computer-science foundations, social-research method. Junior IT and data professional based in Germany.">
-<meta name="twitter:image" content="https://elisaganea.eu/assets/img/og-image.jpg">
+<meta name="twitter:title" content="{{ cv.site.title | escape }}">
+<meta name="twitter:description" content="{{ cv.site.share_description | escape }}">
+<meta name="twitter:image" content="{{ cv.site.url }}{{ cv.site.og_image }}">
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon.svg">
@@ -37,17 +45,18 @@
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Elisa Zoe Ganea",
-  "url": "https://elisaganea.eu/",
-  "email": "contact@elisaganea.eu",
-  "jobTitle": "Junior IT / Data & Analytics Professional",
-  "nationality": "Romanian",
-  "address": { "@type": "PostalAddress", "addressCountry": "DE" },
-  "knowsLanguage": ["en", "fr", "de", "ro"],
-  "knowsAbout": ["SQL", "C++", "Python", "R", "Linux", "Statistical analysis", "SPSS", "Data analysis"],
+  "name": {{ person.name | jsonify }},
+  "url": {{ cv.site.url | jsonify }},
+  "email": {{ person.email | jsonify }},
+  "jobTitle": {{ person.job_title | jsonify }},
+  "nationality": {{ person.nationality | jsonify }},
+  "address": { "@type": "PostalAddress", "addressCountry": {{ person.country_code | jsonify }} },
+  "knowsLanguage": {{ person.knows_language | jsonify }},
+  "knowsAbout": {{ person.knows_about | jsonify }},
   "alumniOf": [
-    { "@type": "CollegeOrUniversity", "name": "Politehnica University of Bucharest" },
-    { "@type": "CollegeOrUniversity", "name": "University of Bucharest" }
+    {%- for school in person.alumni_of %}
+    { "@type": "CollegeOrUniversity", "name": {{ school | jsonify }} }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
   ]
 }
 </script>
@@ -69,9 +78,9 @@
 <!-- ── Header ─────────────────────────────────────────────────────────── -->
 <header class="site-header" id="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="#top" aria-label="Elisa Zoe Ganea — back to top">
-      <span class="brand-mark" aria-hidden="true">EG</span>
-      <span class="brand-name">Elisa&nbsp;Zoe&nbsp;Ganea</span>
+    <a class="brand" href="#top" aria-label="{{ person.name | escape }} — back to top">
+      <span class="brand-mark" aria-hidden="true">{{ person.initials | escape }}</span>
+      <span class="brand-name">{{ person.name | escape | replace: ' ', '&nbsp;' }}</span>
     </a>
 
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
@@ -81,11 +90,9 @@
 
     <nav class="nav" id="primary-nav" aria-label="Primary">
       <ul class="nav-list">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a class="nav-cta" href="#contact">Contact</a></li>
+        {%- for item in cv.nav %}
+        <li><a{% if item.cta %} class="nav-cta"{% endif %} href="{{ item.href }}">{{ item.label | escape }}</a></li>
+        {%- endfor %}
       </ul>
     </nav>
   </div>
@@ -100,93 +107,67 @@
     <div class="wrap hero-inner">
       <div class="hero-text">
         <!-- nbsp inside each item so the line breaks between them, never mid-phrase -->
-        <p class="eyebrow reveal">Germany &nbsp;·&nbsp; EU&nbsp;citizen &nbsp;·&nbsp; open&nbsp;to&nbsp;work</p>
+        <p class="eyebrow reveal">{% for item in cv.hero.eyebrow %}{{ item | escape | replace: ' ', '&nbsp;' }}{% unless forloop.last %} &nbsp;·&nbsp; {% endunless %}{% endfor %}</p>
 
         <h1 class="hero-title reveal" style="--i:1">
-          Elisa Zoe<br>Ganea
+          {% for line in person.name_lines %}{{ line | escape }}{% unless forloop.last %}<br>{% endunless %}{% endfor %}
         </h1>
 
         <p class="hero-lead reveal" style="--i:2">
-          Junior IT and data professional — computer-science foundations,
-          <em>social-research method.</em>
+          {{ cv.hero.lead | markdownify | remove: '<p>' | remove: '</p>' | strip }}
         </p>
 
         <p class="hero-body reveal" style="--i:3">
-          Two years of computer science (algorithms, data structures, SQL, Linux) with
-          applied research training in statistics and mixed methods. Currently in Germany,
-          looking for an entry-level IT or data role.
+          {{ cv.hero.body | escape }}
         </p>
 
         <div class="hero-actions reveal" style="--i:4">
-          <a class="btn btn-primary" href="#contact">Get in touch</a>
-          <a class="btn btn-ghost" href="#projects">See my work</a>
+          {%- for action in cv.hero.actions %}
+          <a class="btn btn-{{ action.style }}" href="{{ action.href }}">{{ action.label | escape }}</a>
+          {%- endfor %}
 
           <span class="action-sep" aria-hidden="true"></span>
+          {%- for profile in cv.profiles %}
 
-          <a class="btn-icon" href="https://www.linkedin.com/in/elisaganea/"
+          <a class="btn-icon" href="{{ profile.url }}"
              target="_blank" rel="me noopener noreferrer"
-             aria-label="LinkedIn profile (opens in a new tab)">
-            <svg aria-hidden="true" focusable="false"><use href="#i-linkedin"></use></svg>
+             aria-label="{{ profile.name | escape }} profile (opens in a new tab)">
+            <svg aria-hidden="true" focusable="false"><use href="#i-{{ profile.icon }}"></use></svg>
           </a>
-          <a class="btn-icon" href="https://github.com/eeelisaaa"
-             target="_blank" rel="me noopener noreferrer"
-             aria-label="GitHub profile (opens in a new tab)">
-            <svg aria-hidden="true" focusable="false"><use href="#i-github"></use></svg>
-          </a>
+          {%- endfor %}
         </div>
       </div>
 
       <div class="hero-portrait reveal" style="--i:2">
         <div class="portrait-frame">
           <img src="assets/img/portrait.webp" width="700" height="1050"
-               alt="Portrait of Elisa Zoe Ganea" fetchpriority="high" decoding="async">
+               alt="{{ person.portrait_alt | escape }}" fetchpriority="high" decoding="async">
         </div>
       </div>
     </div>
   </section>
 
   <!-- ── Highlights carousel ──────────────────────────────────────────── -->
-  <!-- Cards rotate every 3s. Add or remove <article class="hl-card"> blocks
-       freely — the JS counts what is in the DOM and builds the dots to match. -->
-  <section class="highlights" aria-labelledby="highlights-heading" data-carousel data-interval="3000">
+  <!-- Cards rotate on a timer. Add or remove entries under `highlights.cards`
+       in _data/cv.yml — the JS counts what is in the DOM and builds the dots. -->
+  <section class="highlights" aria-labelledby="highlights-heading" data-carousel data-interval="{{ cv.highlights.interval_ms }}">
     <div class="wrap">
       <h2 class="sr-only" id="highlights-heading">Career highlights</h2>
 
       <div class="hl-stage reveal">
         <div class="hl-viewport" data-carousel-viewport>
+          {%- for card in cv.highlights.cards %}
 
-          <!-- is-current on the first card avoids a blank frame before JS runs -->
-          <article class="hl-card is-current">
-            <p class="hl-kicker">Competition</p>
-            <h3 class="hl-title">2&times; second place, County Computer Science Olympiad</h3>
+          {%- comment %} is-current on the first card avoids a blank frame before JS runs {% endcomment %}
+          <article class="hl-card{% if forloop.first %} is-current{% endif %}">
+            <p class="hl-kicker">{{ card.kicker | escape }}</p>
+            <h3 class="hl-title">{{ card.title | escape }}</h3>
             <p class="hl-body">
-              Algorithmic programming in C++, placed second at county level in two consecutive
-              years while completing a Mathematics &amp; Computer Science baccalaureate.
+              {{ card.body | escape }}
             </p>
-            <p class="hl-meta">2022 &amp; 2023 &nbsp;·&nbsp; Buz&#259;u, Romania</p>
+            <p class="hl-meta">{% for part in card.meta %}{{ part | escape }}{% unless forloop.last %} &nbsp;·&nbsp; {% endunless %}{% endfor %}</p>
           </article>
-
-          <article class="hl-card">
-            <p class="hl-kicker">Leadership</p>
-            <h3 class="hl-title">Led the current-affairs desk at &#536;tiri Bazate</h3>
-            <p class="hl-body">
-              Ran assignment schedules and a team of contributors at a digital outlet in Bucharest,
-              owning every story end to end — research and on-site interviews through proofreading
-              to publication.
-            </p>
-            <p class="hl-meta">Nov 2024 &ndash; Nov 2025 &nbsp;·&nbsp; Bucharest, Romania</p>
-          </article>
-
-          <article class="hl-card">
-            <p class="hl-kicker">Research</p>
-            <h3 class="hl-title">A data-informed policy brief, pitched to a panel</h3>
-            <p class="hl-body">
-              Built a policy brief at the EU-funded Business &amp; Policy Accelerator Hub and
-              presented it to a panel of entrepreneurs and policy experts — the analysis-plus-communication
-              combination this whole page is about.
-            </p>
-            <p class="hl-meta">UEFISCIDI &nbsp;·&nbsp; EU-funded programme</p>
-          </article>
+          {%- endfor %}
 
         </div>
 
@@ -204,50 +185,24 @@
       <div class="about-grid">
         <div class="about-copy">
           <h2 class="section-title reveal" id="about-heading">
-            My work is the intersection of <em>technical skill</em> and <em>analytical thinking.</em>
+            {{ cv.about.title | markdownify | remove: '<p>' | remove: '</p>' | strip }}
           </h2>
+          {%- for paragraph in cv.about.paragraphs %}
 
-          <p class="reveal" style="--i:1">
-            Two years of computer science at Politehnica University of Bucharest gave me the
-            fundamentals — algorithms, data structures, SQL, Operating Systems, C/C++. A year of sociology
-            at the University of Bucharest added the other half: how to design research, run the
-            statistics, and interpret what the numbers actually mean.
+          <p class="reveal" style="--i:{{ forloop.index }}">
+            {{ paragraph | markdownify | remove: '<p>' | remove: '</p>' | strip }}
           </p>
-
-          <p class="reveal" style="--i:2">
-            That combination is what I'm most useful for. I can write the query, and also tell
-            you whether the sample it draws from justifies the conclusion someone wants to put
-            in a slide.
-          </p>
-
-          <p class="reveal" style="--i:3">
-            I'm based in Germany, expert in English, and actively laerning German. I'm looking for an IT or data-oriented role where both halves
-            get used.
-          </p>
+          {%- endfor %}
         </div>
 
         <aside class="about-facts reveal" style="--i:2" aria-label="Quick facts">
           <dl>
+            {%- for fact in cv.about.facts %}
             <div class="fact">
-              <dt>Based in</dt>
-              <dd>Germany</dd>
+              <dt>{{ fact.label | escape }}</dt>
+              <dd>{{ fact.value | escape }}</dd>
             </div>
-            <div class="fact">
-              <dt>Status</dt>
-              <dd>EU citizen (Romanian)</dd>
-            </div>
-            <div class="fact">
-              <dt>Languages</dt>
-              <dd>English C2 · French B1 · German A1 · Romanian native</dd>
-            </div>
-            <div class="fact">
-              <dt>Next up</dt>
-              <dd>B.A. Business Management, CODE University Berlin — Feb 2027</dd>
-            </div>
-            <div class="fact">
-              <dt>Looking for</dt>
-              <dd>Entry-level IT / data</dd>
-            </div>
+            {%- endfor %}
           </dl>
         </aside>
       </div>
@@ -258,50 +213,26 @@
   <section class="section" id="skills" aria-labelledby="skills-heading">
     <div class="wrap">
       <p class="section-index reveal"><span>02</span> Skills</p>
-      <h2 class="section-title reveal" id="skills-heading">What I bring to a team</h2>
+      <h2 class="section-title reveal" id="skills-heading">{{ cv.skills.title | escape }}</h2>
 
       <div class="skills-grid">
-        <article class="skill-card reveal" style="--i:1">
-          <h3>IT &amp C</h3>
+        {%- for group in cv.skills.groups %}
+        <article class="skill-card reveal" style="--i:{{ forloop.index }}">
+          <h3>{{ group.name | escape }}</h3>
           <ul class="chips">
-            <li>Math & CS knowledge</li><li>SQL</li><li>C / C++</li><li>Python</li><li>R</li>
-            <li>Web Development (basic)</li><li>Artificial Intelligence</li><li>Databases</li>
-            <li>Algorithmic problem-solving</li>
+            {%- for item in group.items %}
+            <li>{{ item | escape }}</li>
+            {%- endfor %}
           </ul>
         </article>
+        {%- endfor %}
 
-        <article class="skill-card reveal" style="--i:2">
-          <h3>Data &amp; research</h3>
-          <ul class="chips">
-            <li>Statistical analysis</li><li>Descriptive statistics</li><li>SPSS</li>
-            <li>Mixed-methods research</li><li>Survey / Interview design</li>
-            <li>Writing scientific papers</li><li>Qualitative research</li>
-          </ul>
-        </article>
-
-        <article class="skill-card reveal" style="--i:3">
-          <h3>Tools</h3>
-          <ul class="chips">
-            <li>Excel / Spreadsheets</li><li>Presentation software</li>
-            <li>Google Workspace</li><li>Linux / Windows / Mac OS</li>
-          </ul>
-        </article>
-
-        <article class="skill-card reveal" style="--i:3">
-          <h3>Soft skills</h3>
-          <ul class="chips">
-            <li>Leadership experience</li><li>Teamwork</li>
-            <li>Conduct presentations &amp; public speaking</li>
-          </ul>
-        </article>
-
-        <article class="skill-card reveal" style="--i:4">
-          <h3>Languages</h3>
+        <article class="skill-card reveal" style="--i:{{ cv.skills.groups.size | plus: 1 }}">
+          <h3>{{ cv.skills.languages_heading | escape }}</h3>
           <ul class="lang-list">
-            <li><span>English</span><span class="lang-level">C2 · Cambridge certified</span></li>
-            <li><span>French</span><span class="lang-level">B1</span></li>
-            <li><span>German</span><span class="lang-level">A1 · actively learning</span></li>
-            <li><span>Romanian</span><span class="lang-level">Native</span></li>
+            {%- for language in cv.skills.languages %}
+            <li><span>{{ language.name | escape }}</span><span class="lang-level">{{ language.level | escape }}</span></li>
+            {%- endfor %}
           </ul>
         </article>
       </div>
@@ -312,97 +243,57 @@
   <section class="section" id="experience" aria-labelledby="experience-heading">
     <div class="wrap">
       <p class="section-index reveal"><span>03</span> Experience</p>
-      <h2 class="section-title reveal" id="experience-heading">Where I've worked and studied</h2>
+      <h2 class="section-title reveal" id="experience-heading">{{ cv.experience.title | escape }}</h2>
 
       <ol class="timeline">
-        <li class="tl-item reveal" style="--i:1">
-          <div class="tl-when">Jul &ndash; Sep 2026</div>
+        {%- for role in cv.experience.roles %}
+        <li class="tl-item reveal" style="--i:{{ forloop.index }}">
+          <div class="tl-when">{{ role.when | escape }}</div>
           <div class="tl-what">
-            <h3>Seasonal Staff Member</h3>
-            <p class="tl-org">Meersburg Therme &nbsp;·&nbsp; Meersburg, Germany</p>
+            <h3>{{ role.role | escape }}</h3>
+            <p class="tl-org">{{ role.org | escape }} &nbsp;·&nbsp; {{ role.place | escape }}</p>
             <ul>
-              <li>Maintained hygiene, safety and operational standards in a high-volume leisure
-                  facility under shift-based time pressure.</li>
-              <li>Worked and communicated daily in a German-speaking team, adapting quickly to
-                  local workplace norms.</li>
+              {%- for bullet in role.bullets %}
+              <li>{{ bullet | escape }}</li>
+              {%- endfor %}
             </ul>
           </div>
         </li>
-
-        <li class="tl-item reveal" style="--i:2">
-          <div class="tl-when">Nov 2024 &ndash; Nov 2025</div>
-          <div class="tl-what">
-            <h3>Editorial Coordinator — Current Affairs</h3>
-            <p class="tl-org">&#536;tiri Bazate &nbsp;·&nbsp; Bucharest, Romania</p>
-            <ul>
-              <li>Led the current-affairs team: managed assignment schedules, coordinated
-                  contributors, and maintained editorial and publishing standards across a
-                  digital outlet.</li>
-              <li>Conducted on-site reporting and interviews, synthesising complex civic and
-                  European affairs topics into clear, structured explainers.</li>
-              <li>Owned the end-to-end editorial workflow, from research through proofreading
-                  to publication.</li>
-            </ul>
-          </div>
-        </li>
+        {%- endfor %}
       </ol>
 
       <div class="sub-grid">
         <div class="sub-block">
-          <h3 class="sub-heading reveal">Education</h3>
+          <h3 class="sub-heading reveal">{{ cv.experience.education_heading | escape }}</h3>
           <ol class="mini-list">
-            <li class="reveal" style="--i:1">
-              <p class="mini-when">Starts Feb 2027</p>
-              <p class="mini-what"><strong>B.A. Business Management</strong></p>
-              <p class="mini-org">CODE University of Applied Sciences, Berlin</p>
+            {%- for entry in cv.experience.education %}
+            <li class="reveal" style="--i:{{ forloop.index }}">
+              {%- if entry.when %}
+              <p class="mini-when">{{ entry.when | escape }}</p>
+              {%- endif %}
+              <p class="mini-what">{{ entry.what | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+              {%- if entry.org %}
+              <p class="mini-org">{{ entry.org | escape }}</p>
+              {%- endif %}
+              {%- if entry.note %}
+              <p class="mini-note">{{ entry.note | escape }}</p>
+              {%- endif %}
             </li>
-            <li class="reveal" style="--i:2">
-              <p class="mini-when">2025 &ndash; 2026</p>
-              <p class="mini-what"><strong>Sociology</strong> — 1 year completed</p>
-              <p class="mini-org">University of Bucharest, Faculty of Sociology and Social Work</p>
-              <p class="mini-note">Mixed-methods research design, survey formulation, structured
-                interviews, statistical analysis (R, SPSS)</p>
-            </li>
-            <li class="reveal" style="--i:3">
-              <p class="mini-when">2022 &ndash; 2024</p>
-              <p class="mini-what"><strong>Computer Science</strong> — 2 years completed</p>
-              <p class="mini-org">Politehnica University of Bucharest (UNSTPB), Faculty of ETTI</p>
-              <p class="mini-note">Data structures, algorithms, object-oriented programming,
-                SQL, Linux, C/C++</p>
-            </li>
-            <li class="reveal" style="--i:4">
-              <p class="mini-when">2019 &ndash; 2023</p>
-              <p class="mini-what"><strong>Baccalaureate</strong> — Mathematics &amp; Computer Science</p>
-              <p class="mini-org">B.P. Hasdeu National College, Buz&#259;u</p>
-              <p class="mini-note">2nd place, County-level Computer Science Olympiad
-                (C++ algorithmic programming) — 2022 &amp; 2023</p>
-            </li>
+            {%- endfor %}
           </ol>
         </div>
 
         <div class="sub-block">
-          <h3 class="sub-heading reveal">Beyond work</h3>
+          <h3 class="sub-heading reveal">{{ cv.experience.activities_heading | escape }}</h3>
           <ul class="mini-list">
-            <li class="reveal" style="--i:1">
-              <p class="mini-what"><strong>Gen Z Jury Member</strong> — HR Club Awards 2026</p>
-              <p class="mini-note">Evaluated corporate HR and people initiatives for
-                digital-transformation impact and workplace wellbeing.</p>
+            {%- for entry in cv.experience.activities %}
+            <li class="reveal" style="--i:{{ forloop.index }}">
+              <p class="mini-what">{{ entry.what | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+              {%- if entry.note %}
+              <p class="mini-note">{{ entry.note | escape }}</p>
+              {%- endif %}
             </li>
-            <li class="reveal" style="--i:2">
-              <p class="mini-what"><strong>Business &amp; Policy Accelerator Hub</strong> — UEFISCIDI, EU-funded</p>
-              <p class="mini-note">Developed a data-informed policy brief and pitched it to a
-                panel of entrepreneurs and policy experts.</p>
-            </li>
-            <li class="reveal" style="--i:3">
-              <p class="mini-what"><strong>Impulse Boost Camp</strong> — Germany</p>
-              <p class="mini-note">International training programme for civically active
-                young people.</p>
-            </li>
-            <li class="reveal" style="--i:4">
-              <p class="mini-what"><strong>Assistant Coordinator</strong> — Education Department</p>
-              <p class="mini-note">Faculty of Sociology Student Association (A.S.&ndash;S.AS),
-                Bucharest.</p>
-            </li>
+            {%- endfor %}
           </ul>
         </div>
       </div>
@@ -413,46 +304,36 @@
   <section class="section" id="projects" aria-labelledby="projects-heading">
     <div class="wrap">
       <p class="section-index reveal"><span>04</span> Projects</p>
-      <h2 class="section-title reveal" id="projects-heading">Selected work</h2>
+      <h2 class="section-title reveal" id="projects-heading">{{ cv.projects.title | escape }}</h2>
       <p class="section-lead reveal" style="--i:1">
-        A place for the things I build. First entries going up soon.
+        {{ cv.projects.lead | escape }}
       </p>
 
       <div class="projects-grid">
+        {%- for project in cv.projects.items %}
 
-        <!-- PLACEHOLDER — replace with a real project (template below). -->
-        <article class="project-card is-placeholder reveal" style="--i:1">
+        <article class="project-card{% unless project.url %} is-placeholder{% endunless %} reveal" style="--i:{{ forloop.index }}">
           <div class="project-top">
-            <span class="project-status">In progress</span>
+            <span class="project-status">{{ project.status | escape }}</span>
           </div>
-          <h3 class="project-title">Project coming soon</h3>
+          <h3 class="project-title">{{ project.title | escape }}</h3>
           <p class="project-body">
-            The first case study is being written up — what the problem was, the approach taken,
-            and what the data actually showed.
+            {{ project.body | escape }}
           </p>
           <ul class="chips chips-sm">
-            <li>SQL</li><li>Python</li><li>Analysis</li>
+            {%- for tag in project.tags %}
+            <li>{{ tag | escape }}</li>
+            {%- endfor %}
           </ul>
-          <span class="project-link" aria-hidden="true">Coming soon</span>
-        </article>
-
-        <!-- ══ TEMPLATE — copy this block, uncomment, and fill in ══════════
-        <article class="project-card reveal" style="--i:2">
-          <div class="project-top">
-            <span class="project-status">2027</span>
-          </div>
-          <h3 class="project-title">Project name</h3>
-          <p class="project-body">
-            One or two sentences: the problem, what you built, what it showed.
-          </p>
-          <ul class="chips chips-sm">
-            <li>Tool</li><li>Tool</li><li>Tool</li>
-          </ul>
-          <a class="project-link" href="https://example.com">
-            View project <span aria-hidden="true">&#8594;</span>
+          {%- if project.url %}
+          <a class="project-link" href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
+            {{ project.link_label | escape }} <span aria-hidden="true">&#8594;</span>
           </a>
+          {%- else %}
+          <span class="project-link" aria-hidden="true">{{ project.link_label | escape }}</span>
+          {%- endif %}
         </article>
-        ═══════════════════════════════════════════════════════════════ -->
+        {%- endfor %}
 
       </div>
     </div>
@@ -463,32 +344,26 @@
     <div class="wrap">
       <p class="section-index reveal"><span>05</span> Contact</p>
       <h2 class="section-title contact-title reveal" id="contact-heading">
-        Let's <em>talk.</em>
+        {{ cv.contact.title | markdownify | remove: '<p>' | remove: '</p>' | strip }}
       </h2>
       <p class="section-lead reveal" style="--i:1">
-        Open to entry-level IT and data roles — and happy to hear about
-        anything where careful analysis is the point.
+        {{ cv.contact.lead | escape }}
       </p>
 
-      <a class="contact-email reveal" style="--i:2" href="mailto:contact@elisaganea.eu">
-        contact@elisaganea.eu
+      <a class="contact-email reveal" style="--i:2" href="mailto:{{ person.email }}">
+        {{ person.email | escape }}
       </a>
 
       <ul class="contact-links reveal" style="--i:3">
+        {%- for profile in cv.profiles %}
         <li>
-          <a class="btn-icon btn-icon-lg" href="https://www.linkedin.com/in/elisaganea/"
+          <a class="btn-icon btn-icon-lg" href="{{ profile.url }}"
              target="_blank" rel="me noopener noreferrer"
-             aria-label="LinkedIn profile (opens in a new tab)">
-            <svg aria-hidden="true" focusable="false"><use href="#i-linkedin"></use></svg>
+             aria-label="{{ profile.name | escape }} profile (opens in a new tab)">
+            <svg aria-hidden="true" focusable="false"><use href="#i-{{ profile.icon }}"></use></svg>
           </a>
         </li>
-        <li>
-          <a class="btn-icon btn-icon-lg" href="https://github.com/eeelisaaa"
-             target="_blank" rel="me noopener noreferrer"
-             aria-label="GitHub profile (opens in a new tab)">
-            <svg aria-hidden="true" focusable="false"><use href="#i-github"></use></svg>
-          </a>
-        </li>
+        {%- endfor %}
       </ul>
     </div>
   </section>
@@ -497,7 +372,7 @@
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <p>&copy; <span id="year">2026</span> Elisa Zoe Ganea</p>
+    <p>&copy; <span id="year">{{ 'now' | date: "%Y" }}</span> {{ person.name | escape }}</p>
   </div>
 </footer>
 
