@@ -1,0 +1,16 @@
+# Jekyll configuration.
+# The site's content is NOT here — it lives in _data/cv.yml.
+# This file only tells Jekyll how to build.
+
+# Kept out of the built site.
+exclude:
+  - README.md
+  - tools/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+
+# Straight apostrophes and quotes, as typed. Without this kramdown would
+# silently turn "Let's" into "Let’s" and the design uses them as written.
+kramdown:
+  smart_quotes: ["apos", "apos", "quot", "quot"]

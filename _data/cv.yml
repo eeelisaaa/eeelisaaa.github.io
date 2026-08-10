@@ -1,0 +1,277 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  All the editable content of elisaganea.eu lives here.
+#  Edit this file, not index.html — index.html is a template that reads from it.
+#
+#  A few fields accept Markdown for emphasis (marked "markdown:" below):
+#    *word*   → accent-coloured italic
+#    **word** → bold
+#  Everything else is plain text and is escaped automatically, so you can type
+#  & < > and apostrophes freely without breaking anything.
+# ─────────────────────────────────────────────────────────────────────────────
+
+site:
+  title: "Elisa Zoe Ganea — Junior IT / Data & Analytics"
+  description: >-
+    Elisa Zoe Ganea — junior IT and data professional in Germany.
+    Computer-science foundations in algorithms, SQL and Linux, paired with
+    applied social-research method in R and SPSS.
+  # Shorter blurb used for link previews on LinkedIn, Slack, WhatsApp, etc.
+  share_description: >-
+    Computer-science foundations, social-research method. Junior IT and data
+    professional based in Germany.
+  url: "https://elisaganea.eu/"
+  theme_color: "#0B0A0F"
+  og_image: "assets/img/og-image.jpg"
+  og_image_width: 1200
+  og_image_height: 630
+
+person:
+  name: "Elisa Zoe Ganea"
+  # The hero headline breaks between these lines.
+  name_lines:
+    - "Elisa Zoe"
+    - "Ganea"
+  initials: "EG"
+  job_title: "Junior IT / Data & Analytics Professional"
+  email: "contact@elisaganea.eu"
+  nationality: "Romanian"
+  country_code: "DE"
+  portrait_alt: "Portrait of Elisa Zoe Ganea"
+  # Used only by the machine-readable data search engines read.
+  knows_language: ["en", "fr", "de", "ro"]
+  knows_about:
+    ["SQL", "C++", "Python", "R", "Linux", "Statistical analysis", "SPSS",
+     "Data analysis"]
+  alumni_of:
+    - "Politehnica University of Bucharest"
+    - "University of Bucharest"
+
+# Profile buttons, shown in the hero and again at the bottom.
+# icon must be one of: linkedin, github
+profiles:
+  - name: "LinkedIn"
+    icon: "linkedin"
+    url: "https://www.linkedin.com/in/elisaganea/"
+  - name: "GitHub"
+    icon: "github"
+    url: "https://github.com/eeelisaaa"
+
+nav:
+  - {label: "About",      href: "#about"}
+  - {label: "Skills",     href: "#skills"}
+  - {label: "Experience", href: "#experience"}
+  - {label: "Projects",   href: "#projects"}
+  - {label: "Contact",    href: "#contact", cta: true}
+
+hero:
+  # Joined with · separators; each item stays on one line.
+  eyebrow: ["Germany", "EU citizen", "open to work"]
+  lead: >-                                        # markdown
+    Junior IT and data professional — computer-science foundations,
+    *social-research method.*
+  body: >-
+    Two years of computer science (algorithms, data structures, SQL, Linux) with
+    applied research training in statistics and mixed methods. Currently in Germany,
+    looking for an entry-level IT or data role.
+  actions:
+    - {label: "Get in touch", href: "#contact", style: "primary"}
+    - {label: "See my work",  href: "#projects", style: "ghost"}
+
+# ── The rotating cards under the hero ────────────────────────────────────────
+# Add or remove entries freely — the dots rebuild to match however many there are.
+highlights:
+  interval_ms: 3000
+  cards:
+    - kicker: "Competition"
+      title: "2× second place, County Computer Science Olympiad"
+      body: >-
+        Algorithmic programming in C++, placed second at county level in two consecutive
+        years while completing a Mathematics & Computer Science baccalaureate.
+      meta: ["2022 & 2023", "Buzău, Romania"]
+
+    - kicker: "Leadership"
+      title: "Led the current-affairs desk at Știri Bazate"
+      body: >-
+        Ran assignment schedules and a team of contributors at a digital outlet in Bucharest,
+        owning every story end to end — research and on-site interviews through proofreading
+        to publication.
+      meta: ["Nov 2024 – Nov 2025", "Bucharest, Romania"]
+
+    - kicker: "Research"
+      title: "A data-informed policy brief, pitched to a panel"
+      body: >-
+        Built a policy brief at the EU-funded Business & Policy Accelerator Hub and
+        presented it to a panel of entrepreneurs and policy experts — the analysis-plus-communication
+        combination this whole page is about.
+      meta: ["UEFISCIDI", "EU-funded programme"]
+
+about:
+  title: >-                                       # markdown
+    My work is the intersection of *technical skill* and *analytical thinking.*
+  paragraphs:                                     # markdown
+    - >-
+      Two years of computer science at Politehnica University of Bucharest gave me the
+      fundamentals — algorithms, data structures, SQL, Operating Systems, C/C++. A year of sociology
+      at the University of Bucharest added the other half: how to design research, run the
+      statistics, and interpret what the numbers actually mean.
+    - >-
+      That combination is what I'm most useful for. I can write the query, and also tell
+      you whether the sample it draws from justifies the conclusion someone wants to put
+      in a slide.
+    - >-
+      I'm based in Germany, expert in English, and actively learning German. I'm looking for an IT or data-oriented role where both halves
+      get used.
+  facts:
+    - {label: "Based in",    value: "Germany"}
+    - {label: "Status",      value: "EU citizen (Romanian)"}
+    - {label: "Languages",   value: "English C2 · French B1 · German A1 · Romanian native"}
+    - {label: "Looking for", value: "Entry-level IT / data"}
+
+skills:
+  title: "What I bring to a team"
+  groups:
+    - name: "IT & C"
+      items:
+        - "Math & CS knowledge"
+        - "SQL"
+        - "C / C++"
+        - "Python"
+        - "R"
+        - "Web Development (basic)"
+        - "Artificial Intelligence"
+        - "Databases"
+        - "Algorithmic problem-solving"
+
+    - name: "Data & research"
+      items:
+        - "Statistical analysis"
+        - "Descriptive statistics"
+        - "SPSS"
+        - "Mixed-methods research"
+        - "Survey / Interview design"
+        - "Writing scientific papers"
+        - "Qualitative research"
+
+    - name: "Tools"
+      items:
+        - "Excel / Spreadsheets"
+        - "Presentation software"
+        - "Google Workspace"
+        - "Linux / Windows / Mac OS"
+
+    - name: "Soft skills"
+      items:
+        - "Leadership experience"
+        - "Teamwork"
+        - "Conduct presentations & public speaking"
+
+  # Rendered as its own card, with the level on the right.
+  languages_heading: "Languages"
+  languages:
+    - {name: "English",  level: "C2 · Cambridge certified"}
+    - {name: "French",   level: "B1"}
+    - {name: "German",   level: "A1 · actively learning"}
+    - {name: "Romanian", level: "Native"}
+
+experience:
+  title: "Where I've worked and studied"
+  roles:
+    - when: "Jul – Sep 2026"
+      role: "Seasonal Staff Member"
+      org: "Meersburg Therme"
+      place: "Meersburg, Germany"
+      bullets:
+        - >-
+          Maintained hygiene, safety and operational standards in a high-volume leisure
+          facility under shift-based time pressure.
+        - >-
+          Worked and communicated daily in a German-speaking team, adapting quickly to
+          local workplace norms.
+
+    - when: "Nov 2024 – Nov 2025"
+      role: "Editorial Coordinator — Current Affairs"
+      org: "Știri Bazate"
+      place: "Bucharest, Romania"
+      bullets:
+        - >-
+          Led the current-affairs team: managed assignment schedules, coordinated
+          contributors, and maintained editorial and publishing standards across a
+          digital outlet.
+        - >-
+          Conducted on-site reporting and interviews, synthesising complex civic and
+          European affairs topics into clear, structured explainers.
+        - >-
+          Owned the end-to-end editorial workflow, from research through proofreading
+          to publication.
+
+  education_heading: "Education"
+  education:                                      # "what" accepts markdown
+    - when: "2025 – 2026"
+      what: "**Sociology** — 1 year completed"
+      org: "University of Bucharest, Faculty of Sociology and Social Work"
+      note: >-
+        Mixed-methods research design, survey formulation, structured
+        interviews, statistical analysis (R, SPSS)
+
+    - when: "2023 – 2025"
+      what: "**Computer Science** — 2 years completed"
+      org: "Politehnica University of Bucharest (UNSTPB), Faculty of ETTI"
+      note: >-
+        Data structures, algorithms, object-oriented programming,
+        SQL, Linux, C/C++
+
+    - when: "2019 – 2023"
+      what: "**Baccalaureate** — Mathematics & Computer Science"
+      org: "B.P. Hasdeu National College, Buzău"
+      note: >-
+        2nd place, County-level Computer Science Olympiad
+        (C++ algorithmic programming) — 2022 & 2023
+
+  activities_heading: "Beyond work"
+  activities:                                     # "what" accepts markdown
+    - what: "**Gen Z Jury Member** — HR Club Awards 2026"
+      note: >-
+        Evaluated corporate HR and people initiatives for
+        digital-transformation impact and workplace wellbeing.
+
+    - what: "**Business & Policy Accelerator Hub** — UEFISCIDI, EU-funded"
+      note: >-
+        Developed a data-informed policy brief and pitched it to a
+        panel of entrepreneurs and policy experts.
+
+    - what: "**Impulse Boost Camp** — Germany"
+      note: >-
+        International training programme for civically active
+        young people.
+
+    - what: "**Assistant Coordinator** — Education Department"
+      note: >-
+        Faculty of Sociology Student Association (A.S.–S.AS),
+        Bucharest.
+
+projects:
+  title: "Selected work"
+  lead: "A place for the things I build. First entries going up soon."
+  # Leave "url" out and the card renders as a dashed placeholder with no link.
+  items:
+    - status: "In progress"
+      title: "Project coming soon"
+      body: >-
+        The first case study is being written up — what the problem was, the approach taken,
+        and what the data actually showed.
+      tags: ["SQL", "Python", "Analysis"]
+      link_label: "Coming soon"
+
+    # Copy this shape for a real project:
+    # - status: "2027"
+    #   title: "Project name"
+    #   body: "One or two sentences: the problem, what you built, what it showed."
+    #   tags: ["Tool", "Tool"]
+    #   url: "https://example.com"
+    #   link_label: "View project"
+
+contact:
+  title: "Let's *talk.*"                          # markdown
+  lead: >-
+    Open to entry-level IT and data roles — and happy to hear about
+    anything where careful analysis is the point.
