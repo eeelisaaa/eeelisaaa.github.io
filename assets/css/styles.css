@@ -302,6 +302,52 @@ a { color: inherit; text-decoration: none; }
   background: color-mix(in srgb, var(--accent) 8%, transparent);
 }
 
+/* ── Round profile buttons (LinkedIn / GitHub) ──────────────────────────── */
+
+.btn-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;               /* never stretches, even where .btn goes full width */
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  color: var(--muted);
+  background: color-mix(in srgb, var(--surface) 40%, transparent);
+  transition: color .3s var(--ease), border-color .3s var(--ease),
+              background .3s var(--ease), transform .3s var(--ease),
+              box-shadow .3s var(--ease);
+}
+
+.btn-icon svg {
+  width: 19px;
+  height: 19px;
+  fill: currentColor;
+  display: block;
+  transition: transform .3s var(--ease);
+}
+
+.btn-icon:hover {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -14px color-mix(in srgb, var(--accent) 80%, transparent);
+}
+.btn-icon:hover svg { transform: scale(1.08); }
+.btn-icon:active { transform: translateY(-1px); }
+
+.btn-icon-lg { width: 58px; height: 58px; }
+.btn-icon-lg svg { width: 24px; height: 24px; }
+
+/* Hairline between the text calls to action and the profile buttons. */
+.action-sep {
+  width: 1px;
+  align-self: stretch;
+  margin-inline: .35rem;
+  background: var(--line);
+}
+
 /* ── Hero ───────────────────────────────────────────────────────────────── */
 
 .hero {
@@ -823,15 +869,9 @@ a.project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .contact-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.75rem;
-  margin-top: 2rem;
-  font-size: .95rem;
+  gap: .9rem;
+  margin-top: 2.25rem;
 }
-.contact-links a {
-  color: var(--muted);
-  transition: color .3s var(--ease);
-}
-.contact-links a:hover { color: var(--accent); }
 
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 
@@ -920,7 +960,10 @@ a.project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 @media (max-width: 520px) {
   .brand-name { display: none; }
+  /* Text actions go full width; the round buttons sit together on their own row. */
   .hero-actions .btn { flex: 1 1 100%; }
+  .action-sep { display: none; }
+  .btn-icon { width: 44px; height: 44px; }
   .lang-list li { flex-direction: column; gap: .2rem; }
   .lang-level { text-align: left; }
   .footer-inner { flex-direction: column; }
@@ -945,7 +988,8 @@ a.project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
   }
 
   .hero-glow { animation: none; }
-  .btn:hover, .skill-card:hover, .project-card:hover { transform: none; }
+  .btn:hover, .skill-card:hover, .project-card:hover,
+  .btn-icon:hover, .btn-icon:hover svg { transform: none; }
 
   /* Carousel becomes a static stack — nothing moves, nothing is hidden. */
   .js .hl-viewport { gap: 1rem; }
