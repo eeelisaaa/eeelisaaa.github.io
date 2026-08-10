@@ -125,7 +125,6 @@ about:
     - {label: "Based in",    value: "Germany"}
     - {label: "Status",      value: "EU citizen (Romanian)"}
     - {label: "Languages",   value: "English C2 · French B1 · German A1 · Romanian native"}
-    - {label: "Next up",     value: "B.A. Business Management, CODE University Berlin — Feb 2027"}
     - {label: "Looking for", value: "Entry-level IT / data"}
 
 skills:
@@ -207,10 +206,6 @@ experience:
 
   education_heading: "Education"
   education:                                      # "what" accepts markdown
-    - when: "Starts Feb 2027"
-      what: "**B.A. Business Management**"
-      org: "CODE University of Applied Sciences, Berlin"
-
     - when: "2025 – 2026"
       what: "**Sociology** — 1 year completed"
       org: "University of Bucharest, Faculty of Sociology and Social Work"
@@ -218,7 +213,7 @@ experience:
         Mixed-methods research design, survey formulation, structured
         interviews, statistical analysis (R, SPSS)
 
-    - when: "2022 – 2024"
+    - when: "2023 – 2025"
       what: "**Computer Science** — 2 years completed"
       org: "Politehnica University of Bucharest (UNSTPB), Faculty of ETTI"
       note: >-
