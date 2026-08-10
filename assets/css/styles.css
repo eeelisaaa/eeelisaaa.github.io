@@ -383,60 +383,19 @@ a { color: inherit; text-decoration: none; }
 
 .hero-portrait { justify-self: end; }
 
+/* The grade and the edge feather are baked into portrait.webp's alpha channel
+   (see tools/make-portrait.py). Doing it in the image rather than with a CSS
+   mask plus a page-coloured vignette means it composites correctly over the
+   hero glow — a vignette painted in --bg drew a dark rectangle over it. */
 .portrait-frame {
   position: relative;
-  width: clamp(200px, 26vw, 310px);
+  width: clamp(230px, 30vw, 350px);
   aspect-ratio: 2 / 3;
-
-  /* No frame, no ring: the photo is feathered to transparent at every edge so
-     it dissolves into the page instead of sitting in a cut-out shape. */
-  --portrait-feather: radial-gradient(
-    ellipse 74% 70% at 50% 42%,
-    #000 30%,
-    rgba(0, 0, 0, .8) 56%,
-    rgba(0, 0, 0, .3) 78%,
-    transparent 93%);
-  -webkit-mask-image: var(--portrait-feather);
-  mask-image: var(--portrait-feather);
 }
 
 .portrait-frame img {
   width: 100%; height: 100%;
   object-fit: cover;
-  /* The studio backdrop is near-white. Grading it well down is what lets the
-     photo sit in the page instead of on top of it; the centre light below
-     gives her face back its brightness. */
-  filter: saturate(.7) contrast(1.13) brightness(.58);
-}
-
-/* Soft key light over the face, so darkening the frame doesn't flatten her. */
-.portrait-frame::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: radial-gradient(ellipse 34% 26% at 50% 34%,
-    rgba(255, 250, 245, .15), transparent 70%);
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
-/* Vignette in the page colour: pulls the remaining wall down to the page tone
-   from the edges in, so the backdrop never reads as a bright panel. */
-.portrait-frame::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background:
-    radial-gradient(ellipse 56% 54% at 50% 43%,
-      transparent 16%,
-      color-mix(in srgb, var(--bg) 60%, transparent) 52%,
-      var(--bg) 92%),
-    linear-gradient(180deg,
-      transparent 30%,
-      color-mix(in srgb, var(--bg) 90%, transparent) 100%);
-  pointer-events: none;
 }
 
 /* ── Highlights carousel ────────────────────────────────────────────────── */
@@ -954,7 +913,7 @@ a.project-link:hover { text-decoration: underline; text-underline-offset: 4px; }
     gap: 2.5rem;
   }
   .hero-portrait { justify-self: start; order: -1; }
-  .portrait-frame { width: clamp(160px, 42vw, 215px); }
+  .portrait-frame { width: clamp(190px, 48vw, 250px); }
 
   .hero-lead { max-width: 100%; }
 }
