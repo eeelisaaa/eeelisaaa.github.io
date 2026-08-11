@@ -19,11 +19,14 @@ page:
   title: "Elisa Zoe Ganea"
   description: >-
     My profiles and work here.
-  tagline: "Junior IT & data — Germany"
+  tagline: "Be the change you want to see in the world."
 
 sections:
   - heading: "Socials"
     rows:
+      - profile: linkedin
+        label: "LinkedIn"
+
       - url: "https://www.instagram.com/elisag.zgn/"
         icon: "instagram"
         label: "Instagram"
@@ -31,29 +34,31 @@ sections:
 
       - url: "https://www.instagram.com/elisag.jpg"
         icon: "instagram"
-        label: "Instagram"
-        sub: "Photography"
+        label: "Photography Instagram"
+        sub: "Open to collaborations / photoshoots"
 
       - url: "https://www.facebook.com/eelisaz.gn/"
         icon: "facebook"
         label: "Facebook"
 
-  - heading: "Work"
+      - mailto: true
+        icon: "mail"
+        label: "Email"
+
+  - heading: "My work"
     rows:
       - url: "/"
         icon: "globe"
         label: "Portfolio"
-        sub: "The full site"
-
-      - profile: linkedin
-        label: "LinkedIn"
-        sub: "Work history and updates"
+        sub: "My full site"
 
       - profile: github
         label: "GitHub"
         sub: "Code and projects"
 
-      - mailto: true
-        icon: "mail"
-        label: "Email"
+      - url: "https://www.group-meowing.ro/post/tranzitia-juridica"
+        icon: "arrow"
+        label: "Tranziția juridică în România"
+
+      
         # sub falls back to the address in cv.yml when left out
