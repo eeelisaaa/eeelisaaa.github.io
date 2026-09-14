@@ -9,17 +9,20 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 site:
-  title: "Portofoliul Elisei"
+  # Titlul paginii principale: numele întâi, ca o căutare după nume să se
+  # potrivească exact.
+  title: "Elisa Zoe Ganea — studentă la Inginerie de Software, Berlin"
   description: >-
-    Elisa Zoe Ganea — studiez la Inginerie de Software la CODE. Open to work. Fostă studentă la Sociologie, pasionată de cercetare
-    socială și date. Stabilită în Berlin, Germania.
+    Elisa Zoe Ganea — studiez Inginerie de Software la CODE, în Berlin, Germania.
+    Disponibilă pentru angajare. Fostă studentă la Sociologie, pasionată de
+    cercetare socială și date.
   share_description: >-
-    Inginerie software, fostă sociologie, open to work, Berlin.
-  url: "https://eeelisaaa.github.io/"
+    Inginerie software, fostă sociologie, disponibilă pentru angajare, Berlin.
   domain: "elisaganea.eu"
   theme_color: "#F2F0EB"
   theme_color_dark: "#141414"
-  og_image: "assets/img/og-image.jpg"
+  og_image: "/assets/img/og-image.jpg"
+  og_image_alt: "Elisa Zoe Ganea"
   og_image_width: 1200
   og_image_height: 630
 
@@ -28,19 +31,24 @@ person:
   name_lines:
     - "Elisa Zoe"
     - "Ganea"
-  job_title: "Studentă la Inginerie de Software;"
+  job_title: "Studentă la Inginerie de Software"
   job_short: "Inginer Software"
   email: "contact@elisaganea.eu"
   nationality: "română"
   country_code: "DE"
   portrait_alt: "Portretul Elisei Zoe Ganea"
+
+  # ── De aici în jos: citit doar de motoarele de căutare și de crawlerele AI.
+  given_name: "Elisa"
+  family_name: "Ganea"
+  alternate_name: "Elisa Ganea"
+  city: "Berlin"
+  country: "Germania"
+  seeking: "Roluri junior în inginerie software, IT și date"
   knows_language: ["en", "fr", "de", "ro"]
   knows_about:
     ["Construirea de site-uri web", "Lucru cu agenți AI", "SQL", "C++", "Python",
      "Statistică / R", "Cercetare / Analiză de date"]
-  alumni_of:
-    - "Universitatea Politehnica din București"
-    - "Universitatea din București"
 
 profiles:
   - name: "LinkedIn"
@@ -144,7 +152,11 @@ skills:
 
 experience:
   roles:
+      # start/end nu se afișează niciodată — alimentează datele structurate și
+      # elementele <time>. Format ISO, AAAA-LL. Fără "end" dacă e în curs.
     - when: "Iul – Sep 2026"
+      start: "2026-07"
+      end: "2026-09"
       role: "Angajată sezonieră"
       org: "Meersburg Therme"
       place: "Meersburg, Germania"
@@ -154,6 +166,8 @@ experience:
           la locul de muncă.
 
     - when: "Nov 2024 – Nov 2025"
+      start: "2024-11"
+      end: "2025-11"
       role: "Coordonatoare editorială — Actualitate"
       org: "Știri Bazate"
       place: "București, România"
@@ -170,11 +184,16 @@ experience:
           la publicare.
 
   education:                                      # "what" accepts markdown
+      # "degree" repetă "what" fără markdown, pentru datele structurate.
     - when: "2027 –"
+      start: "2027"
+      degree: "Licență în Inginerie Software"
       what: "**Licență în Inginerie Software** — începe în curând"
       org: "CODE University of Applied Sciences"
 
     - when: "2025 –"
+      start: "2025"
+      degree: "Sociologie"
       what: "**Sociologie** — în curs"
       org: "Universitatea din București, Facultatea de Sociologie și Asistență Socială"
       note: >-
@@ -182,6 +201,10 @@ experience:
         structurate, analiză statistică (R, SPSS)
 
     - when: "2023 – 2025"
+      start: "2023"
+      end: "2025"
+      degree: "Informatică"
+      org_type: "CollegeOrUniversity"
       what: "**Informatică** — 2 ani finalizați"
       org: "Universitatea Politehnica din București (UNSTPB), Facultatea ETTI"
       note: >-
@@ -189,6 +212,11 @@ experience:
         SQL, Linux, C/C++
 
     - when: "2019 – 2023"
+      start: "2019"
+      end: "2023"
+      degree: "Bacalaureat — Matematică-Informatică"
+      # Nu e universitate, deci apare ca liceu în datele structurate.
+      org_type: "HighSchool"
       what: "**Bacalaureat** — Matematică-Informatică"
       org: "Colegiul Național B.P. Hasdeu, Buzău"
       note: >-
@@ -248,5 +276,7 @@ cv_page:
     email: "Email"
     location: "Locație"
     location_value: "Berlin, Germania"
+    status: "Statut"
+    status_value: "Cetățean UE (România)"
     looking: "Caut"
     looking_value: "Roluri în IT / date"

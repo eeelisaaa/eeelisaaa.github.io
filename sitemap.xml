@@ -1,34 +1,34 @@
+---
+# Generated from _data/languages.yml and the pages' own front matter, so adding
+# a language or a page needs no edit here. The host comes from `url` in
+# _config.yml. /links/ is deliberately absent: it is a bio link, not a page
+# meant to compete with the portfolio in search results, and it carries noindex.
+layout: null
+sitemap: false
+---
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- /links/ is deliberately absent: it is a bio link, not a page meant to
-     compete with the portfolio in search results. It also carries noindex. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- assign default = site.data.languages[0].code -%}
+{%- assign stamp = site.time | date_to_xmlschema -%}
+{%- for p in site.pages -%}
+{%- if p.variant and p.variant != "links" and p.sitemap != false -%}
+{%- assign proot = "/" -%}
+{%- if p.lang != default -%}{%- assign proot = "/" | append: p.lang | append: "/" -%}{%- endif -%}
+{%- if p.slug == "" -%}{%- assign base = 1.0 -%}{%- else -%}{%- assign base = 0.8 -%}{%- endif -%}
+{%- if p.lang != default -%}{%- assign priority = base | times: 0.8 -%}{%- else -%}{%- assign priority = base -%}{%- endif %}
   <url>
-    <loc>https://eeelisaaa.github.io/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eeelisaaa.github.io/"/>
-    <xhtml:link rel="alternate" hreflang="ro" href="https://eeelisaaa.github.io/ro/"/>
+    <loc>{{ site.url }}{{ proot }}{{ p.slug }}</loc>
+    <lastmod>{{ stamp }}</lastmod>
+    {%- for l in site.data.languages %}
+    {%- assign lroot = "/" -%}
+    {%- if l.code != default -%}{%- assign lroot = "/" | append: l.code | append: "/" -%}{%- endif %}
+    <xhtml:link rel="alternate" hreflang="{{ l.code }}" href="{{ site.url }}{{ lroot }}{{ p.slug }}"/>
+    {%- endfor %}
+    <xhtml:link rel="alternate" hreflang="x-default" href="{{ site.url }}/{{ p.slug }}"/>
     <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <priority>{{ priority }}</priority>
   </url>
-  <url>
-    <loc>https://eeelisaaa.github.io/ro/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eeelisaaa.github.io/"/>
-    <xhtml:link rel="alternate" hreflang="ro" href="https://eeelisaaa.github.io/ro/"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://eeelisaaa.github.io/cv/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eeelisaaa.github.io/cv/"/>
-    <xhtml:link rel="alternate" hreflang="ro" href="https://eeelisaaa.github.io/ro/cv/"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://eeelisaaa.github.io/ro/cv/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://eeelisaaa.github.io/cv/"/>
-    <xhtml:link rel="alternate" hreflang="ro" href="https://eeelisaaa.github.io/ro/cv/"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+{%- endif -%}
+{%- endfor %}
 </urlset>

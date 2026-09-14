@@ -1,4 +1,36 @@
+---
+# The Sitemap line is built from `url` in _config.yml so it can never point at
+# the wrong host. Everything is open to everyone except /links/, which is a bio
+# link rather than a page meant to rank.
+layout: null
+sitemap: false
+---
 User-agent: *
 Allow: /
+Disallow: /links/
 
-Sitemap: https://eeelisaaa.github.io/sitemap.xml
+# AI assistants and AI-powered search. A blanket "Allow: /" above already
+# permits these, but naming them makes the choice explicit and durable: this
+# site is meant to be found and quoted by AI answers as well as by search.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: anthropic-ai
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: Bytespider
+User-agent: meta-externalagent
+User-agent: Amazonbot
+User-agent: cohere-ai
+Allow: /
+Disallow: /links/
+
+# A plain-text summary written for language models: {{ site.url }}/llms.txt
+Sitemap: {{ site.url }}/sitemap.xml

@@ -11,7 +11,9 @@
 # ─────────────────────────────────────────────────────────────────────────────
 
 site:
-  title: "Elisa's portfolio"
+  # This is the <title> of the home page and the first thing a search engine
+  # shows. Name first, so a search for the name matches it exactly.
+  title: "Elisa Zoe Ganea — Software Engineering Student in Berlin"
   description: >-
     Elisa Zoe Ganea — Software Engineering student at CODE. Open to work.
     Ex Sociology, passionate about social research and data.
@@ -19,15 +21,13 @@ site:
   # Shorter blurb used for link previews on LinkedIn, Slack, WhatsApp, etc.
   share_description: >-
     Software Engineering, ex Sociology, open to work, Berlin.
-  # Where the site actually lives. Used for canonical links and for the absolute
-  # image URL in social-media previews, so it has to resolve — change it back to
-  # https://elisaganea.eu/ once that domain points at GitHub Pages again.
-  url: "https://eeelisaaa.github.io/"
-  # Shown in the footer of the CV and links pages.
+  # Shown in the footer of the CV and links pages. The real address the site is
+  # built against lives in _config.yml as `url`.
   domain: "elisaganea.eu"
   theme_color: "#F2F0EB"
   theme_color_dark: "#141414"
-  og_image: "assets/img/og-image.jpg"
+  og_image: "/assets/img/og-image.jpg"
+  og_image_alt: "Elisa Zoe Ganea"
   og_image_width: 1200
   og_image_height: 630
 
@@ -37,21 +37,27 @@ person:
   name_lines:
     - "Elisa Zoe"
     - "Ganea"
-  job_title: "Software Engineering student; Open to work"
+  job_title: "Software Engineering Student"
   # Short form used in the pink kicker lines.
   job_short: "Software Engineering student"
   email: "contact@elisaganea.eu"
   nationality: "Romanian"
   country_code: "DE"
   portrait_alt: "Portrait of Elisa Zoe Ganea"
-  # Used only by the machine-readable data search engines read.
+
+  # ── From here down: read only by search engines and AI crawlers, never shown.
+  # Split out so the name matches even when someone searches it without "Zoe".
+  given_name: "Elisa"
+  family_name: "Ganea"
+  alternate_name: "Elisa Ganea"
+  city: "Berlin"
+  country: "Germany"
+  # What she is looking for. Kept out of job_title so that field stays a title.
+  seeking: "Junior software engineering, IT and data roles"
   knows_language: ["en", "fr", "de", "ro"]
   knows_about:
     ["Building Websites", "AI agentic work", "SQL", "C++", "Python", "Statistics / R",
      "Research / Data analysis"]
-  alumni_of:
-    - "Politehnica University of Bucharest"
-    - "University of Bucharest"
 
 # Profile links, shown in the hero, the contact block and on the CV.
 # icon must be one of: linkedin, github
@@ -69,7 +75,7 @@ hero:
   # Joined with · separators after the job title.
   eyebrow: ["Berlin", "Open to work"]
   lead: >-
-    "I don't just write code. I think about it's effect in the world"
+    I don't just write code. I think about its effect in the world
   primary: "Get in touch"
   email_label: "Email"
 
@@ -159,7 +165,11 @@ skills:
 
 experience:
   roles:
+      # start/end are never displayed — they feed the structured data and the
+      # <time> elements. ISO, YYYY-MM. Leave "end" out for an ongoing entry.
     - when: "Jul – Sep 2026"
+      start: "2026-07"
+      end: "2026-09"
       role: "Seasonal Staff Member"
       org: "Meersburg Therme"
       place: "Meersburg, Germany"
@@ -170,6 +180,8 @@ experience:
           Communicated daily in a German-speaking team, adapting quickly to the workplace.
 
     - when: "Nov 2024 – Nov 2025"
+      start: "2024-11"
+      end: "2025-11"
       role: "Editorial Coordinator — Current Affairs"
       org: "Știri Bazate"
       place: "Bucharest, Romania"
@@ -186,11 +198,16 @@ experience:
           to publication.
 
   education:                                      # "what" accepts markdown
+      # "degree" repeats "what" without the markdown, for the structured data.
     - when: "2027 –"
+      start: "2027"
+      degree: "B.Sc. Software Engineering"
       what: "**B.Sc. Software Engineering** — about to start"
       org: "CODE University of Applied Sciences"
 
     - when: "2025 –"
+      start: "2025"
+      degree: "Sociology"
       what: "**Sociology** — ongoing"
       org: "University of Bucharest, Faculty of Sociology and Social Work"
       note: >-
@@ -198,6 +215,10 @@ experience:
         interviews, statistical analysis (R, SPSS)
 
     - when: "2023 – 2025"
+      start: "2023"
+      end: "2025"
+      degree: "Computer Science"
+      org_type: "CollegeOrUniversity"
       what: "**Computer Science** — 2 years completed"
       org: "Politehnica University of Bucharest (UNSTPB), Faculty of ETTI"
       note: >-
@@ -205,6 +226,11 @@ experience:
         SQL, Linux, C/C++
 
     - when: "2019 – 2023"
+      start: "2019"
+      end: "2023"
+      degree: "Baccalaureate — Mathematics & Computer Science"
+      # Not a university, so it is described as a plain school in the structured data.
+      org_type: "HighSchool"
       what: "**Baccalaureate** — Mathematics & Computer Science"
       org: "B.P. Hasdeu National College, Buzău"
       note: >-

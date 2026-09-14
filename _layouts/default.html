@@ -3,6 +3,8 @@ The one layout every page uses. A page sets in its front matter:
   lang      language code, must exist in _data/languages.yml
   slug      path below the language root: "" (home), "cv/" or "links/"
   variant   which page this is: "home" | "cv" | "links" (picks nav, footer and title)
+  title     optional, overrides the title the variant would pick
+  description  optional, same for the meta description
 {%- endcomment -%}
 {%- include lang-vars.html -%}
 {%- assign variant = page.variant | default: "home" -%}
@@ -14,14 +16,17 @@ The one layout every page uses. A page sets in its front matter:
 {%- else -%}
   {%- assign title = cv.site.title -%}{%- assign description = cv.site.description -%}
 {%- endcase -%}
+{%- comment -%} A page may override both in its own front matter (404 does). {%- endcomment -%}
+{%- if page.title -%}{%- assign title = page.title -%}{%- endif -%}
+{%- if page.description -%}{%- assign description = page.description -%}{%- endif -%}
 <!DOCTYPE html>
 <html lang="{{ lang }}">
 {%- if variant == "home" %}
-{% include head.html title=title description=description share=cv.site.share_description jsonld=true %}
+{% include head.html title=title description=description share=cv.site.share_description variant=variant %}
 {%- elsif variant == "links" %}
-{% include head.html title=title description=description noindex=true %}
+{% include head.html title=title description=description variant=variant noindex=true %}
 {%- else %}
-{% include head.html title=title description=description %}
+{% include head.html title=title description=description variant=variant %}
 {%- endif %}
 <body class="page-{{ variant }}" id="top">
 <a class="skip-link" href="#main">{{ ui.skip | escape }}</a>

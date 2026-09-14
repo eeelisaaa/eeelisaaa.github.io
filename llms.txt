@@ -1,0 +1,89 @@
+---
+# A plain-text brief written for language models and AI crawlers, following the
+# llms.txt convention. Generated from the same _data/i18n/en/cv.yml the pages
+# use, so it can never drift from what the site actually says. English only —
+# one canonical machine-readable version is better than one per language.
+layout: null
+sitemap: false
+permalink: /llms.txt
+---
+{%- assign lang = site.data.languages[0].code -%}
+{%- assign d = site.data.i18n[lang] -%}
+{%- assign cv = d.cv -%}
+{%- assign person = cv.person -%}
+# {{ person.name }}
+
+> {{ cv.site.description | strip | normalize_whitespace }}
+
+{{ person.name }} (also written {{ person.alternate_name }}) is a {{ person.job_title | downcase }} based in {{ person.city }}, {{ person.country }}. {{ person.nationality }} national, EU citizen. Currently seeking: {{ person.seeking }}. This file is the machine-readable summary of {{ cv.site.domain }}; every fact below is also on the pages themselves.
+
+- Canonical site: {{ site.url }}/
+- Contact: {{ person.email }}
+{%- for p in cv.profiles %}
+- {{ p.name }}: {{ p.url }}
+{%- endfor %}
+
+## Pages
+
+{%- for l in site.data.languages %}
+{%- assign lroot = "/" -%}
+{%- if l.code != site.data.languages[0].code -%}{%- assign lroot = "/" | append: l.code | append: "/" -%}{%- endif %}
+- [Home ({{ l.name }})]({{ site.url }}{{ lroot }}): portrait, short introduction, selected work, contact.
+- [CV ({{ l.name }})]({{ site.url }}{{ lroot }}cv/): full experience, education, skills and languages.
+{%- endfor %}
+
+## About
+
+{% for para in cv.about.paragraphs -%}
+{{ para | strip | normalize_whitespace | replace: '**', '' | replace: '*', '' }}
+
+{% endfor %}
+## Experience
+
+{% for r in cv.experience.roles -%}
+### {{ r.role }} — {{ r.org }}
+
+- When: {{ r.when }}{% if r.start %} ({{ r.start }}{% if r.end %} to {{ r.end }}{% else %} to present{% endif %}){% endif %}
+- Where: {{ r.place }}
+{%- for b in r.bullets %}
+- {{ b | strip | normalize_whitespace }}
+{%- endfor %}
+
+{% endfor -%}
+## Education
+
+{% for e in cv.experience.education -%}
+### {{ e.degree | default: e.what | replace: '**', '' }} — {{ e.org }}
+
+- When: {{ e.when }}{% if e.start %} ({{ e.start }}{% if e.end %} to {{ e.end }}{% else %} to present{% endif %}){% endif %}
+{%- if e.note %}
+- Covered: {{ e.note | strip | normalize_whitespace }}
+{%- endif %}
+
+{% endfor -%}
+## Skills
+
+{% for g in cv.skills.groups -%}
+- **{{ g.name }}**: {{ g.items | join: ", " }}
+{% endfor %}
+## Languages
+
+{% for l in cv.skills.languages -%}
+- {{ l.name }}: {{ l.level }}
+{% endfor %}
+## Projects
+
+{% for p in cv.projects.items -%}
+### {{ p.title }}{% if p.url %} ({{ p.url }}){% endif %}
+
+{{ p.body | strip | normalize_whitespace }} Tags: {{ p.tags | join: ", " }}.
+
+{% endfor -%}
+## Beyond work
+
+{% for a in cv.experience.activities -%}
+- {{ a.what | replace: '**', '' }} — {{ a.note | strip | normalize_whitespace }}
+{% endfor %}
+## Contact
+
+{{ cv.contact.lead | strip | normalize_whitespace }} Email {{ person.email }}, or see the profiles listed at the top of this file.

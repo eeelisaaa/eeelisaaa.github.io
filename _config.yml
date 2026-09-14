@@ -2,6 +2,11 @@
 # The site's content is NOT here — it lives in _data/i18n/<lang>/.
 # This file only tells Jekyll how to build.
 
+# The canonical address of the built site. Everything that needs an absolute
+# URL — canonical links, hreflang, social-preview images, the sitemap, robots.txt
+# and llms.txt — is built from this one value. No trailing slash.
+url: "https://elisaganea.eu"
+
 # Kept out of the built site.
 exclude:
   - README.md

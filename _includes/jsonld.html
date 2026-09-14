@@ -1,0 +1,135 @@
+{%- comment -%}
+Structured data (schema.org JSON-LD) — the machine-readable twin of the page.
+Nothing here is visible; it is what Google and AI crawlers parse to learn who
+Elisa is. Everything comes from _data/i18n/<lang>/cv.yml, so the facts can never
+drift from the ones on the page.
+
+One @graph per page, with stable @ids so the nodes cross-reference each other:
+  <url>/#person    the Person — the same entity in every language
+  <url>/#website   the site
+  <this page>#page the page itself (ProfilePage on / and /cv/, WebPage elsewhere)
+
+Parameters: variant ("home" | "cv" | "links"), title, description —
+passed straight through from head.html.
+{%- endcomment -%}
+{%- assign origin = site.url -%}
+{%- assign home_url = origin | append: root -%}
+{%- assign page_url = origin | append: root | append: page.slug -%}
+{%- assign cv_url = origin | append: root | append: "cv/" -%}
+{%- assign og_image = origin | append: cv.site.og_image -%}
+{%- if include.variant == "home" or include.variant == "cv" -%}
+  {%- assign page_type = "ProfilePage" -%}
+{%- else -%}
+  {%- assign page_type = "WebPage" -%}
+{%- endif -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "{{ page_type }}",
+      "@id": {{ page_url | append: "#page" | jsonify }},
+      "url": {{ page_url | jsonify }},
+      "name": {{ include.title | jsonify }},
+      "description": {{ include.description | jsonify }},
+      "inLanguage": {{ lang | jsonify }},
+      "isPartOf": { "@id": {{ home_url | append: "#website" | jsonify }} },
+      "about": { "@id": {{ origin | append: "/#person" | jsonify }} },
+      {%- if include.variant == "home" or include.variant == "cv" %}
+      "mainEntity": { "@id": {{ origin | append: "/#person" | jsonify }} },
+      {%- endif %}
+      "primaryImageOfPage": { "@id": {{ origin | append: "/#image" | jsonify }} }
+      {%- if page.slug != "" %},
+      "breadcrumb": { "@id": {{ page_url | append: "#breadcrumb" | jsonify }} }
+      {%- endif %}
+    },
+    {%- if page.slug != "" %}
+    {
+      "@type": "BreadcrumbList",
+      "@id": {{ page_url | append: "#breadcrumb" | jsonify }},
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": {{ person.name | jsonify }}, "item": {{ home_url | jsonify }} },
+        { "@type": "ListItem", "position": 2, "name": {{ include.title | jsonify }} }
+      ]
+    },
+    {%- endif %}
+    {
+      "@type": "WebSite",
+      "@id": {{ home_url | append: "#website" | jsonify }},
+      "url": {{ home_url | jsonify }},
+      "name": {{ person.name | jsonify }},
+      "description": {{ cv.site.description | strip | jsonify }},
+      "inLanguage": {{ lang | jsonify }},
+      "publisher": { "@id": {{ origin | append: "/#person" | jsonify }} }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": {{ origin | append: "/#image" | jsonify }},
+      "url": {{ og_image | jsonify }},
+      "contentUrl": {{ og_image | jsonify }},
+      "width": {{ cv.site.og_image_width }},
+      "height": {{ cv.site.og_image_height }},
+      "caption": {{ cv.site.og_image_alt | jsonify }}
+    },
+    {
+      "@type": "Person",
+      "@id": {{ origin | append: "/#person" | jsonify }},
+      "name": {{ person.name | jsonify }},
+      "alternateName": {{ person.alternate_name | jsonify }},
+      "givenName": {{ person.given_name | jsonify }},
+      "familyName": {{ person.family_name | jsonify }},
+      "url": {{ home_url | jsonify }},
+      "mainEntityOfPage": { "@id": {{ home_url | append: "#page" | jsonify }} },
+      "image": { "@id": {{ origin | append: "/#image" | jsonify }} },
+      "description": {{ cv.site.description | strip | jsonify }},
+      "email": {{ person.email | prepend: "mailto:" | jsonify }},
+      "jobTitle": {{ person.job_title | jsonify }},
+      "nationality": {{ person.nationality | jsonify }},
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": {{ person.city | jsonify }},
+        "addressCountry": {{ person.country_code | jsonify }}
+      },
+      "homeLocation": { "@type": "Place", "name": {{ person.city | append: ", " | append: person.country | jsonify }} },
+      "seeks": { "@type": "Demand", "name": {{ person.seeking | jsonify }} },
+      "hasOccupation": {
+        "@type": "Occupation",
+        "name": {{ person.job_title | jsonify }},
+        "occupationLocation": { "@type": "City", "name": {{ person.city | jsonify }} }
+      },
+      "knowsAbout": {{ person.knows_about | jsonify }},
+      "knowsLanguage": [
+        {%- for l in cv.skills.languages %}
+        {
+          "@type": "Language",
+          "name": {{ l.name | jsonify }}
+          {%- assign code = person.knows_language[forloop.index0] -%}
+          {%- if code %},
+          "alternateName": {{ code | jsonify }}
+          {%- endif %}
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      "worksFor": [
+        {%- for r in cv.experience.roles %}
+        { "@type": "Organization", "name": {{ r.org | jsonify }}{% if r.org_url %}, "url": {{ r.org_url | jsonify }}{% endif %} }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      "alumniOf": [
+        {%- for e in cv.experience.education %}
+        {
+          "@type": {{ e.org_type | default: "CollegeOrUniversity" | jsonify }},
+          "name": {{ e.org | jsonify }}
+          {%- if e.degree %},
+          "description": {{ e.degree | jsonify }}
+          {%- endif %}
+        }{% unless forloop.last %},{% endunless %}
+        {%- endfor %}
+      ],
+      "sameAs": {{ cv.profiles | map: "url" | jsonify }},
+      "subjectOf": { "@id": {{ cv_url | append: "#page" | jsonify }} }
+    }
+  ]
+}
+</script>

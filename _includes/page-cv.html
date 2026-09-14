@@ -90,7 +90,7 @@ CV page body. Words come from _data/i18n/<lang>/cv.yml; this is only structure.
         <ol class="timeline">
           {%- for role in cv.experience.roles %}
           <li class="entry">
-            <p class="entry-when label muted">{{ role.when | escape }}</p>
+            <p class="entry-when label muted">{% if role.start %}<time datetime="{{ role.start }}">{{ role.when | escape }}</time>{% else %}{{ role.when | escape }}{% endif %}</p>
             <div class="entry-body">
               <h3 class="entry-title">{{ role.role | escape }}</h3>
               <p class="entry-org">{{ role.org | escape }} · {{ role.place | escape }}</p>
@@ -108,7 +108,7 @@ CV page body. Words come from _data/i18n/<lang>/cv.yml; this is only structure.
         <ol class="timeline">
           {%- for e in cv.experience.education %}
           <li class="entry">
-            <p class="entry-when label muted">{{ e.when | escape }}</p>
+            <p class="entry-when label muted">{% if e.start %}<time datetime="{{ e.start }}">{{ e.when | escape }}</time>{% else %}{{ e.when | escape }}{% endif %}</p>
             <div class="entry-body">
               <h3 class="entry-title entry-title-edu">{{ e.what | markdownify | remove: '<p>' | remove: '</p>' | strip }}</h3>
               <p class="entry-org">{{ e.org | escape }}</p>

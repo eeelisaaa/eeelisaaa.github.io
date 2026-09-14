@@ -7,9 +7,13 @@
 #    2. add an entry here
 #    3. copy the three stub pages from ro/ to <code>/ and change `lang:` in each
 # ─────────────────────────────────────────────────────────────────────────────
+#  "locale" is the underscore form Open Graph wants (og:locale); "code" is the
+#  plain BCP-47 tag used for lang= and hreflang.
 - code: en
+  locale: "en_US"
   label: "EN"
   name: "English"
 - code: ro
+  locale: "ro_RO"
   label: "RO"
   name: "Română"
