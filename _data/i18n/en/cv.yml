@@ -1,0 +1,281 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  All the editable content of elisaganea.eu (English) lives here.
+#  Edit this file, not the templates — index.html and cv/index.html read from it.
+#  The Romanian version is ../ro/cv.yml and has exactly the same shape.
+#
+#  A few fields accept Markdown for emphasis (marked "markdown:" below):
+#    *word*   → accent-coloured (pink)
+#    **word** → bold
+#  Everything else is plain text and is escaped automatically, so you can type
+#  & < > and apostrophes freely without breaking anything.
+# ─────────────────────────────────────────────────────────────────────────────
+
+site:
+  title: "Elisa's portfolio"
+  description: >-
+    Elisa Zoe Ganea — Software Engineering student at CODE. Open to work.
+    Ex Sociology, passionate about social research and data.
+    Based in Berlin, Germany.
+  # Shorter blurb used for link previews on LinkedIn, Slack, WhatsApp, etc.
+  share_description: >-
+    Software Engineering, ex Sociology, open to work, Berlin.
+  # Where the site actually lives. Used for canonical links and for the absolute
+  # image URL in social-media previews, so it has to resolve — change it back to
+  # https://elisaganea.eu/ once that domain points at GitHub Pages again.
+  url: "https://eeelisaaa.github.io/"
+  # Shown in the footer of the CV and links pages.
+  domain: "elisaganea.eu"
+  theme_color: "#F2F0EB"
+  theme_color_dark: "#141414"
+  og_image: "assets/img/og-image.jpg"
+  og_image_width: 1200
+  og_image_height: 630
+
+person:
+  name: "Elisa Zoe Ganea"
+  # The hero headline breaks between these lines.
+  name_lines:
+    - "Elisa Zoe"
+    - "Ganea"
+  job_title: "Software Engineering student; Open to work"
+  # Short form used in the pink kicker lines.
+  job_short: "Software Engineering student"
+  email: "contact@elisaganea.eu"
+  nationality: "Romanian"
+  country_code: "DE"
+  portrait_alt: "Portrait of Elisa Zoe Ganea"
+  # Used only by the machine-readable data search engines read.
+  knows_language: ["en", "fr", "de", "ro"]
+  knows_about:
+    ["Building Websites", "AI agentic work", "SQL", "C++", "Python", "Statistics / R",
+     "Research / Data analysis"]
+  alumni_of:
+    - "Politehnica University of Bucharest"
+    - "University of Bucharest"
+
+# Profile links, shown in the hero, the contact block and on the CV.
+# icon must be one of: linkedin, github
+profiles:
+  - name: "LinkedIn"
+    icon: "linkedin"
+    url: "https://www.linkedin.com/in/elisaganea/"
+    short: "linkedin.com/in/elisaganea"
+  - name: "GitHub"
+    icon: "github"
+    url: "https://github.com/eeelisaaa"
+    short: "github.com/eeelisaaa"
+
+hero:
+  # Joined with · separators after the job title.
+  eyebrow: ["Berlin", "Open to work"]
+  lead: >-
+    "I don't just write code. I think about it's effect in the world"
+  primary: "Get in touch"
+  email_label: "Email"
+
+# The strip of skills that scrolls under the hero.
+marquee:
+  - "SQL"
+  - "Python"
+  - "R"
+  - "C / C++"
+  - "Web development"
+  - "Working with AI Agents"
+  - "Statistical analysis"
+  - "Mixed-methods research"
+
+# ── The swipe deck on the home page ──────────────────────────────────────────
+# highlights.cards come first, then projects.items. Add or remove entries
+# freely — the counter and the stack rebuild to match. A card with a `url`
+# gets a "Read more" link; one without is drawn as a dashed placeholder.
+highlights:
+  cards:
+    - kicker: "CS prize"
+      title: "Computer Science Olympiad Prize"
+      body: >-
+        Algorithmic programming in C++, placed second at county level in two consecutive years while completing a Mathematics & Computer Science profile.
+      meta: ["2022 & 2023", "Buzău, Romania"]
+      tags: ["C++", "Programming", "Competition"]
+      url: "cv/#education"
+
+about:
+  title: >-                                       # markdown
+    Technical skill, *analytical* thinking.
+  paragraphs:                                     # markdown
+    - >-
+      Interdisciplinary student combining Computer Science coursework with applied research training from Sociology. 
+    - >-
+      Expert in English (C2), currently learning German and fast to adapt in new environments. 
+    - >-
+      Seeking an IT / data-oriented role where technical skill and structured analytical thinking are needed.
+  facts:
+    - {label: "Based in",    value: "Berlin, Germany"}
+    - {label: "Languages",   value: "English C2 · French B1 · German A1 · Romanian native"}
+    - {label: "Looking for", value: "Entry-level IT / data"}
+
+skills:
+  title: "What I bring to a team"
+  groups:
+    - name: "IT & C"
+      items:
+        - "Math & CS knowledge"
+        - "SQL"
+        - "C / C++"
+        - "Python"
+        - "R"
+        - "Web Development (basic)"
+        - "Artificial Intelligence"
+        - "Databases"
+        - "Algorithmic problem-solving"
+
+    - name: "Data & research"
+      items:
+        - "Statistical analysis"
+        - "Descriptive statistics"
+        - "SPSS"
+        - "Mixed-methods research"
+        - "Survey / Interview design"
+        - "Writing scientific papers"
+        - "Qualitative research"
+
+    - name: "Tools"
+      items:
+        - "Excel / Spreadsheets"
+        - "Presentation software"
+        - "Google Workspace"
+        - "Linux / Windows / Mac OS"
+
+    - name: "Soft skills"
+      items:
+        - "Leadership experience"
+        - "Teamwork"
+        - "Conduct presentations & public speaking"
+
+  languages:
+    - {name: "English",  level: "C2 · Cambridge certified"}
+    - {name: "French",   level: "B1"}
+    - {name: "German",   level: "A1 · actively learning"}
+    - {name: "Romanian", level: "Native"}
+
+experience:
+  roles:
+    - when: "Jul – Sep 2026"
+      role: "Seasonal Staff Member"
+      org: "Meersburg Therme"
+      place: "Meersburg, Germany"
+      bullets:
+        - >-
+          Worked in a high-volume leisure facility under shift-based time pressure.
+        - >-
+          Communicated daily in a German-speaking team, adapting quickly to the workplace.
+
+    - when: "Nov 2024 – Nov 2025"
+      role: "Editorial Coordinator — Current Affairs"
+      org: "Știri Bazate"
+      place: "Bucharest, Romania"
+      bullets:
+        - >-
+          Led the current-affairs team: managed assignment schedules, coordinated
+          contributors, and maintained editorial and publishing standards across a
+          digital outlet.
+        - >-
+          Conducted on-site reporting and interviews, synthesising complex civic and
+          European affairs topics into clear, structured explainers.
+        - >-
+          Owned the end-to-end editorial workflow, from research through proofreading
+          to publication.
+
+  education:                                      # "what" accepts markdown
+    - when: "2027 –"
+      what: "**B.Sc. Software Engineering** — about to start"
+      org: "CODE University of Applied Sciences"
+
+    - when: "2025 –"
+      what: "**Sociology** — ongoing"
+      org: "University of Bucharest, Faculty of Sociology and Social Work"
+      note: >-
+        Mixed-methods research design, survey formulation, structured
+        interviews, statistical analysis (R, SPSS)
+
+    - when: "2023 – 2025"
+      what: "**Computer Science** — 2 years completed"
+      org: "Politehnica University of Bucharest (UNSTPB), Faculty of ETTI"
+      note: >-
+        Data structures, algorithms, object-oriented programming,
+        SQL, Linux, C/C++
+
+    - when: "2019 – 2023"
+      what: "**Baccalaureate** — Mathematics & Computer Science"
+      org: "B.P. Hasdeu National College, Buzău"
+      note: >-
+        2nd place, County-level Computer Science Olympiad
+        (C++ algorithmic programming) — 2022 & 2023
+
+  activities:                                     # "what" accepts markdown
+    - what: "**Gen Z Jury Member** — HR Club Awards 2026"
+      note: >-
+        Evaluated corporate HR and people initiatives for
+        digital-transformation impact and workplace wellbeing.
+
+    - what: "**Business & Policy Accelerator Hub** — UEFISCIDI, EU-funded"
+      note: >-
+        Developed a data-informed policy brief and pitched it to a
+        panel of entrepreneurs and policy experts.
+
+    - what: "**Impulse Boost Camp** — Germany"
+      note: >-
+        International training programme for civically active
+        young people.
+
+    - what: "**Assistant Coordinator** — Education Department"
+      note: >-
+        Faculty of Sociology Student Association (A.S.–S.AS),
+        Bucharest.
+
+projects:
+  title: "Selected work"
+  lead: >-
+    A deck of cards, one per piece of work. Drag a card off the pile, or use
+    the arrows — the next one slides up underneath.
+  # Leave "url" out and the card renders as a dashed placeholder with no link.
+  items:
+    - kicker: "Online"
+      title: "Transgen.ro"
+      body: >-
+        A community hub website for the transgender community in Romania.
+        It features a customized chatbot answering questions with reliable information.
+      tags: ["Web", "AI", "Community project"]
+      url: "https://transgen.ro"
+
+    # Copy this shape for a real project:
+    # - kicker: "2027"
+    #   title: "Project name"
+    #   body: "One or two sentences: the problem, what you built, what it showed."
+    #   tags: ["Tool", "Tool"]
+    #   url: "https://example.com"
+
+contact:
+  # The full stop after the title is drawn in pink by the template.
+  title: "Let's talk"
+  lead: >-
+    Open to work and collaboration. Happy to hear about
+    anything that suits me.
+  # The pink-bordered box next to the contact links.
+  box: "Let's build something great together"
+
+# ── The /cv/ page ────────────────────────────────────────────────────────────
+cv_page:
+  title: "CV — Elisa Zoe Ganea"
+  description: >-
+    The CV of Elisa Zoe Ganea: experience, education, skills and languages.
+  lead: >-
+    Computer-science foundations, social-research method. Junior IT and data
+    professional based in Germany.
+  facts:
+    email: "Email"
+    location: "Location"
+    location_value: "Berlin, Germany"
+    status: "Status"
+    status_value: "EU citizen (Romanian)"
+    looking: "Looking for"
+    looking_value: "IT / data roles"

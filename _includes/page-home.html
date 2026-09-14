@@ -1,0 +1,156 @@
+{%- comment -%}
+Home page body. Words come from _data/i18n/<lang>/cv.yml; this is only structure.
+{%- endcomment -%}
+{%- include lang-vars.html -%}
+{%- assign email_href = person.email | prepend: "mailto:" -%}
+{%- assign kicker = cv.hero.eyebrow | join: " · " -%}
+<main id="main">
+
+  <!-- ── Hero ─────────────────────────────────────────────────────────── -->
+  <section class="hero" aria-labelledby="hero-name">
+    <div class="wrap hero-inner">
+      <div class="hero-text">
+        <h1 class="display hero-name" id="hero-name">
+          {%- for line in person.name_lines -%}
+          <span class="hero-line">{{ line | escape }}</span>
+          {%- endfor -%}
+        </h1>
+        <p class="kicker hero-kicker">{{ person.job_short | escape }} · {{ kicker | escape }}</p>
+        <p class="hero-lead">{{ cv.hero.lead | escape }}</p>
+        <span class="accent-bar" aria-hidden="true"></span>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">{{ cv.hero.primary | escape }}</a>
+          <ul class="text-links">
+            {%- for p in cv.profiles %}
+            <li><a class="text-link" href="{{ p.url }}" target="_blank" rel="me noopener noreferrer">{{ p.name | escape }} {% include icon.html name="ne" px=14 %}<span class="sr-only"> {{ ui.external | escape }}</span></a></li>
+            {%- endfor %}
+            <li><a class="text-link" href="{{ email_href }}">{{ cv.hero.email_label | escape }} {% include icon.html name="ne" px=14 %}</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <span class="photo-glow" aria-hidden="true"></span>
+        <span class="photo-ring" aria-hidden="true"></span>
+        <span class="photo-disc" aria-hidden="true"></span>
+        <img class="photo-img" src="/assets/img/blazer.webp" width="578" height="900"
+             alt="{{ person.portrait_alt | escape }}" fetchpriority="high" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills marquee (decorative; the skills are listed on the CV) ──── -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {%- for i in (1..2) %}
+      <div class="marquee-group">
+        {%- for item in cv.marquee %}
+        <span>{{ item | escape }}</span><span class="marquee-dot"></span>
+        {%- endfor %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+
+  <!-- ── 01 About ─────────────────────────────────────────────────────── -->
+  <section class="section section-about reveal" id="about" aria-labelledby="about-title">
+    <div class="wrap section-grid">
+      <header class="section-head">
+        <div class="section-label"><span class="display section-num">01</span><span class="label">{{ ui.sections.about | escape }}</span></div>
+        <h2 class="display section-title" id="about-title">{{ cv.about.title | markdownify | remove: '<p>' | remove: '</p>' | strip }}</h2>
+      </header>
+      <div class="section-body">
+        <div class="prose">
+          {{ cv.about.paragraphs | join: "
+
+" | markdownify }}
+        </div>
+        <dl class="facts">
+          {%- for fact in cv.about.facts %}
+          <div class="fact"><dt class="label">{{ fact.label | escape }}</dt><dd>{{ fact.value | escape }}</dd></div>
+          {%- endfor %}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 02 Projects: the swipe deck ──────────────────────────────────── -->
+  {%- assign cards = cv.highlights.cards | concat: cv.projects.items -%}
+  <section class="section section-projects reveal" id="projects" aria-labelledby="projects-title">
+    <div class="wrap section-grid">
+      <header class="section-head">
+        <div class="section-label"><span class="display section-num">02</span><span class="label">{{ ui.sections.projects | escape }}</span></div>
+        <h2 class="display section-title" id="projects-title">{{ cv.projects.title | escape }}</h2>
+        <p class="section-lead">{{ cv.projects.lead | escape }}</p>
+        <div class="deck-controls">
+          <button class="icon-btn" type="button" data-deck-prev aria-label="{{ ui.deck.prev | escape }}">{% include icon.html name="left" %}</button>
+          <button class="icon-btn icon-btn-primary" type="button" data-deck-next aria-label="{{ ui.deck.next | escape }}">{% include icon.html name="arrow" %}</button>
+          <p class="display deck-counter" aria-live="polite"><span data-deck-current>01</span> <span class="muted">/ {{ cards.size | prepend: "0" | slice: -2, 2 }}</span></p>
+        </div>
+      </header>
+
+      <div class="deck" data-deck aria-roledescription="carousel" aria-label="{{ ui.deck.label | escape }}">
+        <ol class="deck-stack" data-deck-stack tabindex="0" aria-describedby="deck-hint">
+          {%- for card in cards %}
+          {%- assign n = forloop.index | prepend: "0" | slice: -2, 2 -%}
+          {%- assign href = nil -%}
+          {%- if card.url -%}
+            {%- if card.url contains "://" -%}{%- assign href = card.url -%}{%- else -%}{%- assign href = root | append: card.url -%}{%- endif -%}
+          {%- endif %}
+          <li class="card{% unless href %} card-placeholder{% endunless %}" data-card aria-roledescription="slide" aria-label="{{ n }} / {{ cards.size }}">
+            <div class="card-top">
+              <span class="kicker card-kicker">{{ card.kicker | escape }}{% if card.meta %} · {{ card.meta[0] | escape }}{% endif %}</span>
+              <span class="display card-num" aria-hidden="true">{{ n }}</span>
+            </div>
+            <h3 class="card-title">{{ card.title | escape }}</h3>
+            <p class="card-body">{{ card.body | escape }}</p>
+            {%- if card.tags %}
+            <ul class="tags">
+              {%- for tag in card.tags %}<li>{{ tag | escape }}</li>{% endfor %}
+            </ul>
+            {%- endif %}
+            <div class="card-foot">
+              {%- if href %}
+              <a class="text-link" href="{{ href }}" draggable="false">{{ ui.deck.read_more | escape }} {% include icon.html name="ne" px=14 %}</a>
+              {%- else %}
+              <span class="text-link muted">{{ ui.deck.coming_soon | escape }}</span>
+              {%- endif %}
+              <span class="card-drag muted">{% include icon.html name="arrow" px=14 class="ic-accent" %} {{ ui.deck.drag | escape }}</span>
+            </div>
+          </li>
+          {%- endfor %}
+        </ol>
+        <p class="sr-only" id="deck-hint">{{ ui.deck.hint | escape }}</p>
+
+        <ol class="deck-index" data-deck-index>
+          {%- for card in cards %}
+          <li><button type="button" data-deck-goto="{{ forloop.index0 }}"><span class="deck-index-num">{{ forloop.index | prepend: "0" | slice: -2, 2 }}</span><span>{{ card.title | escape }}</span></button></li>
+          {%- endfor %}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 03 Contact ───────────────────────────────────────────────────── -->
+  <section class="section section-contact reveal" id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact-grid">
+      <div class="contact-main">
+        <div class="section-label"><span class="display section-num">03</span><span class="label">{{ ui.sections.contact | escape }}</span></div>
+        <h2 class="display contact-title" id="contact-title">{{ cv.contact.title | escape }}<span class="accent">.</span></h2>
+        <p class="contact-lead">{{ cv.contact.lead | escape }}</p>
+        <a class="contact-email" href="{{ email_href }}">{{ person.email | escape }} {% include icon.html name="ne" px=22 %}</a>
+        <ul class="text-links">
+          {%- for p in cv.profiles %}
+          <li><a class="text-link" href="{{ p.url }}" target="_blank" rel="me noopener noreferrer">{{ p.name | escape }} {% include icon.html name="ne" px=14 %}<span class="sr-only"> {{ ui.external | escape }}</span></a></li>
+          {%- endfor %}
+          <li><a class="text-link" href="{{ root }}links/">{{ ui.footer.all_links | escape }} {% include icon.html name="ne" px=14 %}</a></li>
+        </ul>
+      </div>
+      <a class="contact-box" href="{{ email_href }}">
+        <span class="contact-box-text">{{ cv.contact.box | escape }}</span>
+        <span class="contact-box-foot"><span class="label muted">{{ kicker | escape }}</span>{% include icon.html name="arrow" px=24 class="ic-accent" %}</span>
+      </a>
+    </div>
+  </section>
+
+</main>

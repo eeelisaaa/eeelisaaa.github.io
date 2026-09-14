@@ -1,0 +1,15 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Languages the site is published in. The first entry is the default and lives
+#  at the site root; every other language lives under /<code>/.
+#
+#  To add a language:
+#    1. copy _data/i18n/en/ to _data/i18n/<code>/ and translate the three files
+#    2. add an entry here
+#    3. copy the three stub pages from ro/ to <code>/ and change `lang:` in each
+# ─────────────────────────────────────────────────────────────────────────────
+- code: en
+  label: "EN"
+  name: "English"
+- code: ro
+  label: "RO"
+  name: "Română"

@@ -1,0 +1,46 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Conținutul în română al paginii de linkuri, la /ro/links/.
+#  Aceeași structură ca ../en/links.yml — vezi acolo explicația câmpurilor.
+# ─────────────────────────────────────────────────────────────────────────────
+
+page:
+  title: "Elisa Zoe Ganea"
+  description: >-
+    Profilurile și munca mea.
+  tagline: "✨Girl in STEM✨. Be the change you want to see in the world."
+  location: "Germania"
+
+sections:
+  - heading: "Rețele sociale"
+    rows:
+      - profile: linkedin
+        label: "LinkedIn"
+
+      - url: "https://www.instagram.com/elisag.zgn/"
+        icon: "instagram"
+        label: "Instagram"
+        sub: "Personal"
+
+      - url: "https://www.instagram.com/elisag.jpg"
+        icon: "instagram"
+        label: "Instagram foto"
+        sub: "Deschisă la colaborări / ședințe foto"
+
+      - url: "https://www.facebook.com/eelisaz.gn/"
+        icon: "facebook"
+        label: "Facebook"
+
+      - mailto: true
+        icon: "mail"
+        label: "Email"
+
+  - heading: "Lucrările mele"
+    rows:
+      - url: "/"
+        icon: "globe"
+        label: "Portofoliu"
+        sub: "Site-ul meu complet"
+
+      - profile: github
+        label: "GitHub"
+        sub: "Cod și proiecte"

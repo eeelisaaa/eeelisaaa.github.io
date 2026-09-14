@@ -1,0 +1,252 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Conținutul în română al elisaganea.eu. Are exact aceeași structură ca
+#  ../en/cv.yml — modifică textele aici, nu în șabloane.
+#
+#  Câteva câmpuri acceptă Markdown pentru accent (marcate "markdown:" mai jos):
+#    *cuvânt*   → colorat cu accent (roz)
+#    **cuvânt** → bold
+#  Restul e text simplu, escapat automat: poți scrie liber & < > și apostrofuri.
+# ─────────────────────────────────────────────────────────────────────────────
+
+site:
+  title: "Portofoliul Elisei"
+  description: >-
+    Elisa Zoe Ganea — studiez la Inginerie de Software la CODE. Open to work. Fostă studentă la Sociologie, pasionată de cercetare
+    socială și date. Stabilită în Berlin, Germania.
+  share_description: >-
+    Inginerie software, fostă sociologie, open to work, Berlin.
+  url: "https://eeelisaaa.github.io/"
+  domain: "elisaganea.eu"
+  theme_color: "#F2F0EB"
+  theme_color_dark: "#141414"
+  og_image: "assets/img/og-image.jpg"
+  og_image_width: 1200
+  og_image_height: 630
+
+person:
+  name: "Elisa Zoe Ganea"
+  name_lines:
+    - "Elisa Zoe"
+    - "Ganea"
+  job_title: "Studentă la Inginerie de Software;"
+  job_short: "Inginer Software"
+  email: "contact@elisaganea.eu"
+  nationality: "română"
+  country_code: "DE"
+  portrait_alt: "Portretul Elisei Zoe Ganea"
+  knows_language: ["en", "fr", "de", "ro"]
+  knows_about:
+    ["Construirea de site-uri web", "Lucru cu agenți AI", "SQL", "C++", "Python",
+     "Statistică / R", "Cercetare / Analiză de date"]
+  alumni_of:
+    - "Universitatea Politehnica din București"
+    - "Universitatea din București"
+
+profiles:
+  - name: "LinkedIn"
+    icon: "linkedin"
+    url: "https://www.linkedin.com/in/elisaganea/"
+    short: "linkedin.com/in/elisaganea"
+  - name: "GitHub"
+    icon: "github"
+    url: "https://github.com/eeelisaaa"
+    short: "github.com/eeelisaaa"
+
+hero:
+  eyebrow: ["Germania", "cetățean UE", "disponibilă pentru angajare"]
+  lead: >-
+    Nu mi-e de ajuns doar să scriu cod. Mă gândesc la impactul lui în lume.
+  primary: "Contactează-mă"
+  email_label: "Email"
+
+marquee:
+  - "SQL"
+  - "Python"
+  - "R"
+  - "C / C++"
+  - "Dezvoltare web"
+  - "Lucru cu agenți AI"
+  - "Analiză statistică"
+  - "Cercetare cu metode mixte"
+
+highlights:
+  cards:
+    - kicker: "Premiu la informatică"
+      title: "Premiu la Olimpiada de Informatică"
+      body: >-
+        Programare algoritmică în C++: locul al doilea la nivel județean doi ani la rând,
+        în timpul liceului, la profilul Matematică-Informatică.
+      meta: ["2022 & 2023", "Buzău, România"]
+      tags: ["C++", "Progrmare", "Concurs"]
+      url: "cv/#education"
+
+about:
+  title: >-                                       # markdown
+    Competență tehnică, gândire *analitică.*
+  paragraphs:                                     # markdown
+    - >-
+      Studentă interdisciplinară: combin cursurile de informatică cu pregătirea în
+      cercetare aplicată din sociologie.
+    - >-
+      Vorbesc engleza la nivel expert (C2), învăț germana și mă adaptez rapid în
+      medii noi.
+    - >-
+      Caut un rol în IT sau orientat spre date, în care sunt necesare competența
+      tehnică și gândirea analitică structurată.
+  facts:
+    - {label: "Locație",  value: "Berlin, Germania"}
+    - {label: "Limbi",    value: "Engleză C2 · Franceză B1 · Germană A1 · Română nativă"}
+    - {label: "Caut",     value: "Rol entry-level în IT / date"}
+
+skills:
+  title: "Ce aduc într-o echipă"
+  groups:
+    - name: "IT & C"
+      items:
+        - "Cunoștințe de matematică și informatică"
+        - "SQL"
+        - "C / C++"
+        - "Python"
+        - "R"
+        - "Dezvoltare web (bazic)"
+        - "Inteligență artificială"
+        - "Baze de date"
+        - "Rezolvare algoritmică de probleme"
+
+    - name: "Date & cercetare"
+      items:
+        - "Analiză statistică"
+        - "Statistică descriptivă"
+        - "SPSS"
+        - "Cercetare cu metode mixte"
+        - "Design de sondaje / interviuri"
+        - "Redactare de lucrări științifice"
+        - "Cercetare calitativă"
+
+    - name: "Instrumente"
+      items:
+        - "Excel / foi de calcul"
+        - "Software de prezentare"
+        - "Google Workspace"
+        - "Linux / Windows / Mac OS"
+
+    - name: "Abilități soft"
+      items:
+        - "Experiență de leadership"
+        - "Lucru în echipă"
+        - "Prezentări și vorbit în public"
+
+  languages:
+    - {name: "Engleză",  level: "C2 · certificat Cambridge"}
+    - {name: "Franceză", level: "B1"}
+    - {name: "Germană",  level: "A1 · învăț activ"}
+    - {name: "Română",   level: "Nativă"}
+
+experience:
+  roles:
+    - when: "Iul – Sep 2026"
+      role: "Angajată sezonieră"
+      org: "Meersburg Therme"
+      place: "Meersburg, Germania"
+      bullets:
+        - >-
+          Am comunicat zilnic într-o echipă vorbitoare de germană, adaptându-mă rapid
+          la locul de muncă.
+
+    - when: "Nov 2024 – Nov 2025"
+      role: "Coordonatoare editorială — Actualitate"
+      org: "Știri Bazate"
+      place: "București, România"
+      bullets:
+        - >-
+          Am condus echipa de actualitate: am gestionat calendarul de materiale, am coordonat
+          colaboratorii și am menținut standardele editoriale și de publicare ale unei
+          publicații digitale.
+        - >-
+          Am realizat reportaje și interviuri pe teren, sintetizând subiecte civice și
+          europene complexe în explicații clare și structurate.
+        - >-
+          Am răspuns de întregul flux editorial, de la documentare, prin corectură, până
+          la publicare.
+
+  education:                                      # "what" accepts markdown
+    - when: "2027 –"
+      what: "**Licență în Inginerie Software** — începe în curând"
+      org: "CODE University of Applied Sciences"
+
+    - when: "2025 –"
+      what: "**Sociologie** — în curs"
+      org: "Universitatea din București, Facultatea de Sociologie și Asistență Socială"
+      note: >-
+        Design de cercetare cu metode mixte, formularea sondajelor, interviuri
+        structurate, analiză statistică (R, SPSS)
+
+    - when: "2023 – 2025"
+      what: "**Informatică** — 2 ani finalizați"
+      org: "Universitatea Politehnica din București (UNSTPB), Facultatea ETTI"
+      note: >-
+        Structuri de date, algoritmi, programare orientată pe obiecte,
+        SQL, Linux, C/C++
+
+    - when: "2019 – 2023"
+      what: "**Bacalaureat** — Matematică-Informatică"
+      org: "Colegiul Național B.P. Hasdeu, Buzău"
+      note: >-
+        Locul II la Olimpiada Județeană de Informatică
+        (programare algoritmică în C++) — 2022 și 2023
+
+  activities:                                     # "what" accepts markdown
+    - what: "**Membră a juriului Gen Z** — HR Club Awards 2026"
+      note: >-
+        Am evaluat inițiative corporate de HR și people după impactul lor asupra
+        transformării digitale și a stării de bine la locul de muncă.
+
+    - what: "**Business & Policy Accelerator Hub** — UEFISCIDI, finanțat de UE"
+      note: >-
+        Am elaborat un policy brief bazat pe date și l-am prezentat unui juriu
+        de antreprenori și experți în politici publice.
+
+    - what: "**Impulse Boost Camp** — Germania"
+      note: >-
+        Program internațional de formare pentru tineri implicați civic.
+
+    - what: "**Coordonatoare asistentă** — Departamentul Educație"
+      note: >-
+        Asociația Studenților din Facultatea de Sociologie (A.S.–S.AS),
+        București.
+
+projects:
+  title: "Lucrări selectate"
+  lead: >-
+    Un pachet de carduri, câte unul pentru fiecare proiect. Trage un card de pe
+    teanc sau folosește săgețile — următorul urcă de dedesubt.
+  items:
+    - kicker: "Online"
+      title: "Transgen.ro"
+      body: >-
+        Un hub comunitar online pentru comunitatea transgender din România.
+        Include un chatbot personalizat, care răspunde la întrebări cu informații
+        de încredere.
+      tags: ["Web", "AI", "Proiect comunitar"]
+      url: "https://transgen.ro"
+
+contact:
+  title: "Hai să vorbim"
+  lead: >-
+    Deschisă către joburi și colaborări. Curioasă să aud despre orice
+    mi s-ar potrivi.
+  box: "Hai să construim ceva grozav împreună"
+
+cv_page:
+  title: "CV — Elisa Zoe Ganea"
+  description: >-
+    CV-ul Elisei Zoe Ganea: experiență, educație, competențe și limbi.
+  lead: >-
+    Fundamente de informatică, metodă de cercetare socială. Profesionistă
+    junior în IT și date, stabilită în Germania.
+  facts:
+    email: "Email"
+    location: "Locație"
+    location_value: "Berlin, Germania"
+    looking: "Caut"
+    looking_value: "Roluri în IT / date"

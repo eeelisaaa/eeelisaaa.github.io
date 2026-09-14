@@ -1,0 +1,20 @@
+{%- comment -%}
+Sets the variables every template needs, from the page's `lang` front matter:
+  lang     language code ("en", "ro", …)
+  default  the site's default language code (the one served at the root)
+  root     URL prefix for this language: "/" or "/ro/"
+  ui       interface strings      (_data/i18n/<lang>/ui.yml)
+  cv       page content           (_data/i18n/<lang>/cv.yml)
+  links    link-in-bio content    (_data/i18n/<lang>/links.yml)
+  person   shorthand for cv.person
+Liquid include scope is shared, so anything assigned here is visible afterwards.
+{%- endcomment -%}
+{%- assign default = site.data.languages[0].code -%}
+{%- assign lang = page.lang | default: default -%}
+{%- assign root = "/" -%}
+{%- if lang != default -%}{%- assign root = "/" | append: lang | append: "/" -%}{%- endif -%}
+{%- assign d = site.data.i18n[lang] -%}
+{%- assign ui = d.ui -%}
+{%- assign cv = d.cv -%}
+{%- assign links = d.links -%}
+{%- assign person = cv.person -%}

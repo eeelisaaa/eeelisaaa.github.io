@@ -1,0 +1,60 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Content for the link-in-bio page at /links/ (English; Romanian is ../ro/links.yml)
+#
+#  This page is NOT linked from the main site and is kept out of sitemap.xml,
+#  but it is still a public URL — anyone with the link can open it.
+#
+#  The page is a list of sections, each with a heading and its own rows.
+#  Reorder, rename or move a row between sections by moving its block.
+#
+#  Each row needs a label and one destination. Give it either:
+#    profile: linkedin|github   → reuses the URL from cv.yml, so it's defined once
+#    mailto: true               → builds mailto: from person.email in cv.yml
+#    url: "https://…" or "/"    → anything else; needs an icon: of its own.
+#                                 "/" means the home page in the same language.
+#  Icons available: linkedin, github, instagram, facebook, mail, globe, arrow
+#  (see _includes/icon.html — a new platform needs a new path there)
+# ─────────────────────────────────────────────────────────────────────────────
+
+page:
+  title: "Elisa Zoe Ganea"
+  description: >-
+    My profiles and work here.
+  tagline: "✨Girl in STEM✨. Be the change you want to see in the world."
+  # Shown after the job title in the pink kicker line.
+  location: "Germany"
+
+sections:
+  - heading: "Socials"
+    rows:
+      - profile: linkedin
+        label: "LinkedIn"
+
+      - url: "https://www.instagram.com/elisag.zgn/"
+        icon: "instagram"
+        label: "Instagram"
+        sub: "Personal"
+
+      - url: "https://www.instagram.com/elisag.jpg"
+        icon: "instagram"
+        label: "Photography Instagram"
+        sub: "Open to collaborations / photoshoots"
+
+      - url: "https://www.facebook.com/eelisaz.gn/"
+        icon: "facebook"
+        label: "Facebook"
+
+      - mailto: true
+        icon: "mail"
+        label: "Email"
+
+  - heading: "My work"
+    rows:
+      - url: "/"
+        icon: "globe"
+        label: "Portfolio"
+        sub: "My full site"
+
+      - profile: github
+        label: "GitHub"
+        sub: "Code and projects"

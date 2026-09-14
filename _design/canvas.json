@@ -1,0 +1,33 @@
+{
+  "pages": [
+    { "id": "home", "name": "Home" },
+    { "id": "links", "name": "Links" },
+    { "id": "cv", "name": "CV" },
+    { "id": "system", "name": "Design system" },
+    { "id": "directions", "name": "Earlier directions" }
+  ],
+  "artboards": [
+    { "file": "Main.dc.html",           "title": "Home · desktop · light",  "page": "home", "x": 0,    "y": 0, "w": 1440, "h": 2640 },
+    { "file": "HomeDark.dc.html",       "title": "Home · desktop · dark",   "page": "home", "x": 1560, "y": 0, "w": 1440, "h": 2640 },
+    { "file": "HomeMobile.dc.html",     "title": "Home · mobile · light",   "page": "home", "x": 3120, "y": 0, "w": 390,  "h": 3460 },
+    { "file": "HomeMobileDark.dc.html", "title": "Home · mobile · dark",    "page": "home", "x": 3630, "y": 0, "w": 390,  "h": 3460 },
+    { "file": "Links.dc.html",          "title": "Links · light",           "page": "links", "x": 0,   "y": 0, "w": 430,  "h": 1160 },
+    { "file": "LinksDark.dc.html",      "title": "Links · dark",            "page": "links", "x": 560, "y": 0, "w": 430,  "h": 1160 },
+    { "file": "CV.dc.html",             "title": "CV · light",              "page": "cv", "x": 0,    "y": 0, "w": 1100, "h": 2360 },
+    { "file": "CVDark.dc.html",         "title": "CV · dark",               "page": "cv", "x": 1220, "y": 0, "w": 1100, "h": 2360 },
+    { "file": "System.dc.html",         "title": "Design system",           "page": "system", "x": 0, "y": 0, "w": 1440, "h": 1560 },
+    { "file": "NeonDark.dc.html",       "title": "A · Neon Bloom · dark",     "page": "directions", "x": 0,    "y": 0,    "w": 1100, "h": 820 },
+    { "file": "NeonLight.dc.html",      "title": "A · Neon Bloom · light",    "page": "directions", "x": 1200, "y": 0,    "w": 1100, "h": 820 },
+    { "file": "EditorialDark.dc.html",  "title": "B · Editorial Mono · dark", "page": "directions", "x": 0,    "y": 1080, "w": 1100, "h": 820 },
+    { "file": "EditorialLight.dc.html", "title": "B · Editorial Mono · light","page": "directions", "x": 1200, "y": 1080, "w": 1100, "h": 820 },
+    { "file": "ZineDark.dc.html",       "title": "C · Acid Zine · dark",      "page": "directions", "x": 0,    "y": 2160, "w": 1100, "h": 820 },
+    { "file": "ZineLight.dc.html",      "title": "C · Acid Zine · light",     "page": "directions", "x": 1200, "y": 2160, "w": 1100, "h": 820 },
+    { "file": "WarmDark.dc.html",       "title": "D · Warm Peach · dark",     "page": "directions", "x": 0,    "y": 3240, "w": 1100, "h": 820 },
+    { "file": "WarmLight.dc.html",      "title": "D · Warm Peach · light",    "page": "directions", "x": 1200, "y": 3240, "w": 1100, "h": 820 }
+  ],
+  "annotations": [
+    { "id": "home-intro", "page": "home", "x": 4140, "y": 0, "w": 400, "text": "Direction: B (Editorial Mono) with A's neon pink + violet replacing the green.\n\nHome page in light and dark, desktop and phone. The Links and CV pages, the design-system sheet (tokens, type, components, EN/RO demo, motion rules) and the earlier directions are on the other pages of this canvas — use the pages menu in the toolbar.\n\nThe project deck uses your three highlights plus the 'coming soon' placeholder until real projects exist. Contact links go to LinkedIn, GitHub and contact@elisaganea.eu." },
+    { "id": "directions-note", "page": "directions", "x": 2420, "y": 0, "w": 380, "text": "The four colour directions from the first round, kept for reference. B was chosen, with the neons from A instead of the green." }
+  ],
+  "launch": { "view": "canvas", "page": "home" }
+}

@@ -1,0 +1,11 @@
+{%- comment -%}
+Site footer, the same on every page. Expects lang-vars.html to have run.
+{%- endcomment -%}
+{%- assign variant = include.variant | default: "home" -%}
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span class="footer-item">&copy; <span data-year>{{ 'now' | date: "%Y" }}</span> {{ person.name | escape }}</span>
+    <span class="footer-item">{{ cv.site.domain | escape }}</span>
+    <a class="footer-item text-link" href="#top">{{ ui.footer.top | escape }} {% include icon.html name="up" px=14 class="ic-accent" %}</a>
+  </div>
+</footer>
