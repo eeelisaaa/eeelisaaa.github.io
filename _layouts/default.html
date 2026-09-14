@@ -1,0 +1,37 @@
+{%- comment -%}
+The one layout every page uses. A page sets in its front matter:
+  lang      language code, must exist in _data/languages.yml
+  slug      path below the language root: "" (home), "cv/" or "links/"
+  variant   which page this is: "home" | "cv" | "links" (picks nav, footer and title)
+{%- endcomment -%}
+{%- include lang-vars.html -%}
+{%- assign variant = page.variant | default: "home" -%}
+{%- case variant -%}
+{%- when "cv" -%}
+  {%- assign title = cv.cv_page.title -%}{%- assign description = cv.cv_page.description -%}
+{%- when "links" -%}
+  {%- assign title = links.page.title -%}{%- assign description = links.page.description -%}
+{%- else -%}
+  {%- assign title = cv.site.title -%}{%- assign description = cv.site.description -%}
+{%- endcase -%}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+{%- if variant == "home" %}
+{% include head.html title=title description=description share=cv.site.share_description jsonld=true %}
+{%- elsif variant == "links" %}
+{% include head.html title=title description=description noindex=true %}
+{%- else %}
+{% include head.html title=title description=description %}
+{%- endif %}
+<body class="page-{{ variant }}" id="top">
+<a class="skip-link" href="#main">{{ ui.skip | escape }}</a>
+
+{% include nav.html variant=variant %}
+
+{{ content }}
+
+{% include footer.html variant=variant %}
+
+<script src="/assets/js/main.js?v={{ site.time | date: "%Y%m%d%H%M" }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Interface strings for this language: navigation, section labels, buttons and
+#  screen-reader text. The page content itself lives in cv.yml and links.yml in
+#  this same folder.
+# ─────────────────────────────────────────────────────────────────────────────
+
+skip: "Skip to content"
+
+nav:
+  label: "Primary"
+  work: "About"
+  cv: "CV"
+  links: "Links"
+  contact: "Get in touch"
+  menu: "Menu"
+  close: "Close menu"
+  home: "back to top"
+
+theme:
+  to_dark: "Switch to dark mode"
+  to_light: "Switch to light mode"
+
+language:
+  label: "Language"
+
+sections:
+  about: "About"
+  projects: "Projects"
+  contact: "Contact"
+  experience: "Experience"
+  education: "Education"
+  expertise: "Expertise"
+  languages: "Languages"
+  beyond: "Beyond work"
+
+deck:
+  label: "Project cards"
+  prev: "Previous card"
+  next: "Next card"
+  drag: "drag to swipe"
+  read_more: "Read more"
+  coming_soon: "Coming soon"
+  hint: "Use the arrow keys to move between cards."
+
+footer:
+  top: "Top"
+  all_links: "All links"
+
+external: "(opens in a new tab)"

@@ -1,0 +1,6 @@
+{ "artboards": [
+  { "file": "HomeMobile.dc.html", "title": "Home mobile", "x": 0, "y": 0, "w": 390, "h": 3460 },
+  { "file": "Links.dc.html", "title": "Links", "x": 500, "y": 0, "w": 430, "h": 1160 },
+  { "file": "CV.dc.html", "title": "CV", "x": 1050, "y": 0, "w": 1100, "h": 2360 },
+  { "file": "System.dc.html", "title": "System", "x": 2270, "y": 0, "w": 1440, "h": 1560 } ],
+  "launch": { "view": "canvas" } }

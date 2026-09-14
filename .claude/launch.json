@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "/opt/homebrew/opt/ruby/bin/bundle",
+      "runtimeArgs": ["exec", "jekyll", "serve", "--port", "4000", "--livereload"],
+      "port": 4000
+    },
+    {
+      "name": "design-preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8765", "--directory", "_design"],
+      "port": 8765
+    }
+  ]
+}

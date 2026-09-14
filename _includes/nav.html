@@ -1,0 +1,60 @@
+{%- comment -%}
+Site header. Expects lang-vars.html to have run.
+
+  variant   "home"  — Work / CV / Links, monogram, language switch, theme, "Get in touch"
+            "cv"    — same, with CV marked as the current page
+            "links" — monogram, language switch and theme only (the bio-link page)
+{%- endcomment -%}
+{%- assign variant = include.variant | default: "home" -%}
+<header class="site-header site-header-{{ variant }}">
+  <div class="wrap nav-inner">
+
+    {%- unless variant == "links" %}
+    <nav class="nav-primary" id="primary-nav" aria-label="{{ ui.nav.label | escape }}">
+      <ul class="nav-list">
+        <li><a href="{{ root }}"{% if variant == "home" %} aria-current="page"{% endif %}>{{ ui.nav.work | escape }}</a></li>
+        <li><a href="{{ root }}cv/"{% if variant == "cv" %} aria-current="page"{% endif %}>{{ ui.nav.cv | escape }}</a></li>
+        <li><a href="{{ root }}links/">{{ ui.nav.links | escape }}</a></li>
+        <li class="nav-list-action">
+          <a class="text-link" href="{{ root }}#contact">{{ ui.nav.contact | escape }} {% include icon.html name="ne" px=14 %}</a>
+        </li>
+      </ul>
+    </nav>
+    {%- endunless %}
+
+    <a class="monogram" href="{{ root }}" aria-label="{{ person.name | escape }} — {{ ui.nav.home | escape }}">
+      <span aria-hidden="true">EG</span>
+    </a>
+
+    <div class="nav-tools">
+      <nav class="lang-switch" aria-label="{{ ui.language.label | escape }}">
+        {%- for l in site.data.languages %}
+        {%- assign lroot = "/" -%}
+        {%- if l.code != default -%}{%- assign lroot = "/" | append: l.code | append: "/" -%}{%- endif %}
+        <a href="{{ lroot }}{{ page.slug }}" hreflang="{{ l.code }}" lang="{{ l.code }}" title="{{ l.name | escape }}"{% if l.code == lang %} aria-current="true"{% endif %}>{{ l.label | escape }}</a>
+        {%- endfor %}
+      </nav>
+
+      <button class="theme-toggle" type="button" data-theme-toggle
+              data-label-dark="{{ ui.theme.to_dark | escape }}" data-label-light="{{ ui.theme.to_light | escape }}"
+              aria-label="{{ ui.theme.to_dark | escape }}">
+        <span class="theme-toggle-moon">{% include icon.html name="moon" %}</span>
+        <span class="theme-toggle-sun">{% include icon.html name="sun" %}</span>
+      </button>
+
+      {%- unless variant == "links" %}
+      <a class="text-link nav-action" href="{{ root }}#contact">{{ ui.nav.contact | escape }} {% include icon.html name="ne" px=14 %}</a>
+      {%- endunless %}
+
+      {%- unless variant == "links" %}
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav"
+              data-label-open="{{ ui.nav.menu | escape }}" data-label-close="{{ ui.nav.close | escape }}"
+              aria-label="{{ ui.nav.menu | escape }}">
+        <span class="nav-toggle-open">{% include icon.html name="menu" %}</span>
+        <span class="nav-toggle-close">{% include icon.html name="close" %}</span>
+      </button>
+      {%- endunless %}
+    </div>
+
+  </div>
+</header>

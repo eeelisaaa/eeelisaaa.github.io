@@ -1,0 +1,124 @@
+{%- comment -%}
+CV page body. Words come from _data/i18n/<lang>/cv.yml; this is only structure.
+{%- endcomment -%}
+{%- include lang-vars.html -%}
+{%- assign email_href = person.email | prepend: "mailto:" -%}
+{%- assign f = cv.cv_page.facts -%}
+<main id="main" class="cv">
+
+  <header class="cv-head">
+    <div class="wrap cv-head-grid">
+      <div class="cv-photo">
+        <span class="photo-glow" aria-hidden="true"></span>
+        <span class="photo-ring" aria-hidden="true"></span>
+        <span class="photo-disc" aria-hidden="true"></span>
+        <img class="photo-img" src="/assets/img/blazer.webp" width="578" height="900"
+             alt="{{ person.portrait_alt | escape }}" fetchpriority="high" decoding="async">
+      </div>
+      <div class="cv-intro">
+        <h1 class="display cv-name">
+          {%- for line in person.name_lines -%}
+          <span class="hero-line">{{ line | escape }}</span>
+          {%- endfor -%}
+        </h1>
+        <p class="kicker">{{ person.job_short | escape }} · {{ cv.hero.eyebrow[0] | escape }} · {{ cv.hero.eyebrow[1] | escape }}</p>
+        <p class="cv-lead">{{ cv.cv_page.lead | escape }}</p>
+      </div>
+      <div class="cv-side">
+        <dl class="facts facts-cv">
+          <div class="fact"><dt class="label">{{ f.email | escape }}</dt><dd><a href="{{ email_href }}">{{ person.email | escape }}</a></dd></div>
+          <div class="fact"><dt class="label">{{ f.location | escape }}</dt><dd>{{ f.location_value | escape }}</dd></div>
+          <div class="fact"><dt class="label">{{ f.status | escape }}</dt><dd>{{ f.status_value | escape }}</dd></div>
+          <div class="fact"><dt class="label">{{ f.looking | escape }}</dt><dd>{{ f.looking_value | escape }}</dd></div>
+          {%- for p in cv.profiles %}
+          <div class="fact"><dt class="label">{{ p.name | escape }}</dt><dd><a class="fact-link" href="{{ p.url }}" target="_blank" rel="me noopener noreferrer">{{ p.short | escape }} {% include icon.html name="ne" px=14 %}<span class="sr-only"> {{ ui.external | escape }}</span></a></dd></div>
+          {%- endfor %}
+        </dl>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap cv-body">
+
+    <aside class="cv-aside">
+      <section class="cv-block" aria-labelledby="expertise-title">
+        <h2 class="label-head" id="expertise-title">{{ ui.sections.expertise | escape }}</h2>
+        {%- for group in cv.skills.groups %}
+        <div class="skill-group">
+          <h3 class="label muted">{{ group.name | escape }}</h3>
+          <ul class="tags">
+            {%- for item in group.items %}<li>{{ item | escape }}</li>{% endfor %}
+          </ul>
+        </div>
+        {%- endfor %}
+      </section>
+
+      <section class="cv-block" aria-labelledby="languages-title">
+        <h2 class="label-head" id="languages-title">{{ ui.sections.languages | escape }}</h2>
+        <dl class="lang-list">
+          {%- for l in cv.skills.languages %}
+          <div class="lang-row"><dt>{{ l.name | escape }}</dt><dd class="muted">{{ l.level | escape }}</dd></div>
+          {%- endfor %}
+        </dl>
+      </section>
+
+      <section class="cv-block" id="beyond" aria-labelledby="beyond-title">
+        <h2 class="label-head" id="beyond-title">{{ ui.sections.beyond | escape }}</h2>
+        <ul class="activity-list">
+          {%- for a in cv.experience.activities %}
+          <li>
+            <p class="activity-what">{{ a.what | markdownify | remove: '<p>' | remove: '</p>' | strip }}</p>
+            <p class="activity-note muted">{{ a.note | escape }}</p>
+          </li>
+          {%- endfor %}
+        </ul>
+      </section>
+    </aside>
+
+    <div class="cv-main">
+      <section class="cv-section" id="about" aria-labelledby="cv-about-title">
+        <div class="section-label"><span class="display section-num">01</span><span class="label" id="cv-about-title">{{ ui.sections.about | escape }}</span></div>
+        <div class="prose">
+          {{ cv.about.paragraphs | join: "
+
+" | markdownify }}
+        </div>
+      </section>
+
+      <section class="cv-section" id="experience" aria-labelledby="cv-exp-title">
+        <div class="section-label"><span class="display section-num">02</span><span class="label" id="cv-exp-title">{{ ui.sections.experience | escape }}</span></div>
+        <ol class="timeline">
+          {%- for role in cv.experience.roles %}
+          <li class="entry">
+            <p class="entry-when label muted">{{ role.when | escape }}</p>
+            <div class="entry-body">
+              <h3 class="entry-title">{{ role.role | escape }}</h3>
+              <p class="entry-org">{{ role.org | escape }} · {{ role.place | escape }}</p>
+              <ul class="entry-bullets">
+                {%- for b in role.bullets %}<li>{{ b | escape }}</li>{% endfor %}
+              </ul>
+            </div>
+          </li>
+          {%- endfor %}
+        </ol>
+      </section>
+
+      <section class="cv-section" id="education" aria-labelledby="cv-edu-title">
+        <div class="section-label"><span class="display section-num">03</span><span class="label" id="cv-edu-title">{{ ui.sections.education | escape }}</span></div>
+        <ol class="timeline">
+          {%- for e in cv.experience.education %}
+          <li class="entry">
+            <p class="entry-when label muted">{{ e.when | escape }}</p>
+            <div class="entry-body">
+              <h3 class="entry-title entry-title-edu">{{ e.what | markdownify | remove: '<p>' | remove: '</p>' | strip }}</h3>
+              <p class="entry-org">{{ e.org | escape }}</p>
+              {%- if e.note %}<p class="entry-note muted">{{ e.note | escape }}</p>{% endif %}
+            </div>
+          </li>
+          {%- endfor %}
+        </ol>
+      </section>
+    </div>
+
+  </div>
+</main>

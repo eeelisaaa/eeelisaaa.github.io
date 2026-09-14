@@ -1,0 +1,49 @@
+# ─────────────────────────────────────────────────────────────────────────────
+#  Textele interfeței în română: navigare, etichete de secțiuni, butoane și
+#  texte pentru cititoarele de ecran. Conținutul paginilor e în cv.yml și
+#  links.yml, în același folder.
+# ─────────────────────────────────────────────────────────────────────────────
+
+skip: "Sari la conținut"
+
+nav:
+  label: "Principal"
+  work: "Proiecte"
+  cv: "CV"
+  links: "Linkuri"
+  contact: "Contactează-mă"
+  menu: "Meniu"
+  close: "Închide meniul"
+  home: "înapoi sus"
+
+theme:
+  to_dark: "Activează modul întunecat"
+  to_light: "Activează modul luminos"
+
+language:
+  label: "Limbă"
+
+sections:
+  about: "Despre"
+  projects: "Proiecte"
+  contact: "Contact"
+  experience: "Experiență"
+  education: "Educație"
+  expertise: "Competențe"
+  languages: "Limbi"
+  beyond: "Dincolo de muncă"
+
+deck:
+  label: "Carduri de proiecte"
+  prev: "Cardul anterior"
+  next: "Cardul următor"
+  drag: "trage pentru a răsfoi"
+  read_more: "Citește mai mult"
+  coming_soon: "În curând"
+  hint: "Folosește săgețile pentru a trece de la un card la altul."
+
+footer:
+  top: "Sus"
+  all_links: "Toate linkurile"
+
+external: "(se deschide într-o filă nouă)"

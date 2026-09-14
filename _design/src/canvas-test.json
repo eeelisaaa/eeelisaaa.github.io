@@ -1,0 +1,4 @@
+{ "artboards": [
+  { "file": "Main.dc.html", "title": "Home · light", "x": 0, "y": 0, "w": 1440, "h": 2640 },
+  { "file": "HomeDark.dc.html", "title": "Home · dark", "x": 1560, "y": 0, "w": 1440, "h": 2640 } ],
+  "launch": { "view": "canvas" } }
